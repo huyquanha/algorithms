@@ -1,5 +1,0 @@
-Leave the first array alone, sort the second and third array (2NlogN) using merge sort
-For each of the name in the first array, do a binary search on the second and third array (since they are
-now sorted) which costs lgN for each => 2lgN and N elements => 2NlgN
-
-overall, the cost is 4NlgN

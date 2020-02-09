@@ -1,2 +1,0 @@
-When you do shellsort, the array starts to become more and more partially sorted, which selection sort
-is not able to take advantage of (insertion sort does), hence selection sort is not a suitable sorting algo for shellsort

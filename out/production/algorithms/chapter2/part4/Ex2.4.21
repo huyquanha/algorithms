@@ -1,4 +1,0 @@
-- For the stack, we will need a max heap. That is, we want whatever item considered max to be at the top of the priority queue
-An item is considered to be max in this case is not because it actually is max, but the time it is inserted in the queue is max
-(to put it another way, it's the last item inserted in the priority queue)
-We will have 2 arrays: Item[] pq and int[] time, an

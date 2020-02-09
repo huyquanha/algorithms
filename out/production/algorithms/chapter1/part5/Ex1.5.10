@@ -1,3 +1,0 @@
-The algorithm would still be correct, however, since find(q) is the root of the subtree containing q,
-linking p's component to that would push the tree higher up and make the tree less deep, rather than
-linking it to q which might be deeper in the hierarchy. We want to keep the tree as shallow as possible

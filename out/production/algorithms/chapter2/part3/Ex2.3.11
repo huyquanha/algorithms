@@ -1,5 +1,0 @@
-With all arrays that have a constant number of distinct keys, very often we will encounter a key equal to the
-partitioning item's key. If we scan over that key instead of stopping, the final crossing position will be
-further away from the middle of the array (because the pointer is allowed to move much faster by not stopping
-at  equal keys), and we all know the middle is the ideal, and further from the middle pushes the quicksort performance
-from linearithmic to quadratic

@@ -1,5 +1,0 @@
-Since doubling factor is 2^b, we can predict the running time formula as
-T(N) = a * N^b
-T = a* No^b
-
-Say N = xNo => T(N) = a * (xNo)^b = a * No^b * x^b = T *x^b = T * (N/No)^b

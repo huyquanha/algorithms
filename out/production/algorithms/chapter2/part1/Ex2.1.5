@@ -1,9 +1,0 @@
-- j > 0 condition always false when the loop terminate
-N, N-1, N-2,...,3, 2, 1
-Reason: for each element starting from the 2nd, since it is guaranteed to be smaller than all the elements to the left of it (the "sorted"
-ones), it will be exchanged all the way to the left end of the array, so the loop terminates because j > 0 condition returns false
-
-- less(a[j], a[j-1]) always false when the loop terminate
-1, 2, 3, ..., N -1, N
-Reason: for each elemenet starting from 2nd, since it is guaranteed to be larger than the element right next to the left, the loop
-will terminate right from the first compare so less([aj], a[j-1]) always false

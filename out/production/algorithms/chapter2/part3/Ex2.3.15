@@ -1,9 +1,0 @@
-- Take any nut (for simplicity, choose the first)
-- Try to fit that nut with each of the bolt, and partition the bolts into 2 subsets: smaller than the nut
-and larger than the nut. Then there must be one bolt that fits the nut.
-- Use that bolt to partition the remaining nuts into 2 subsets: smaller than the bolt and larger than the bolt
-- At the end, we end up with a pair of nut and bolt fitted perfectly, and 2 subsets for both nuts and bolts, one
-smaller than the fitted pair, and the other larger than the fitted pair.
-- The process takes ~2N compares
-
-- Assuming a random distribution, each time the subset size is reduced by half, so we will finish with ~2NlgN compares

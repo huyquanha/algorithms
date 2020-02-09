@@ -1,7 +1,0 @@
-- In the best case, where the partitioning element always end up in the middle, it takes lgN recursive calls
-to get to the sub-array of 1 element
-
-- In the worst case, where the partitioning element always end up either in the first or last position, the recursive depth
-is ~N
-
-- In the average case,

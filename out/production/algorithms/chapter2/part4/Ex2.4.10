@@ -1,3 +1,0 @@
-Children of pq[k] is pq[2*k + 1] and pq[2*(k+1)]
-Parent of pq[k] is pq[(k-1)/2]
-

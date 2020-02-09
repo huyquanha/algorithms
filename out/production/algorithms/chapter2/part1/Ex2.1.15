@@ -1,8 +1,0 @@
-When the cost of exchange is much larger than the cost of compare, we look at an algorithm where the number of
-exchanges is very small compared to the number of compares, and that is Selection Sort (N exch vs ~N^2 /2 compares)
-
-- For each pass in Selection sort, compare to get the min crate
-- Put the min crate to the empty place
-- Put the first crate (of that iteration) to the min crate place
-- Put the min crate from the empty place to the first crate place
-- Continue with the next iteration.
