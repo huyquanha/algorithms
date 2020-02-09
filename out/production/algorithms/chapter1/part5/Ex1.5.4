@@ -1,0 +1,203 @@
+Reference input
+idx: 0 1 2 3 4 5 6 7 8 9
+id[] 0 1 2 3 4 5 6 7 8 9
+sz[] 1 1 1 1 1 1 1 1 1 1
+
+- 4 3
+    - connected(4,3) returns false, 1 arr acc for each find() => 2. find(4) = 4, find(3) = 3
+    - union(4,3)
+        - 2 arr acc for find()
+        - sz[4] = sz[3] = 1 => link 3 to 4 => id[3] = 4, sz[4] += sz[3] = 2
+idx: 0 1 2 3 4 5 6 7 8 9
+id[] 0 1 2 4 4 5 6 7 8 9
+sz[] 1 1 1 1 2 1 1 1 1 1
+
+- 3 8
+    - conneceted(3,8) false. find(3) = 4 (3 arr acc), find(8) = 8 (1 arr acc) => 4 total
+    - union(3,8)
+        - 4 arr acc for find()
+        - sz[4] = 2 > sz[8] = 1 => link 8 to 4 => id[8] = 4, sz[4] += sz[8] = 3
+idx: 0 1 2 3 4 5 6 7 8 9
+id[] 0 1 2 4 4 5 6 7 4 9
+sz[] 1 1 1 1 3 1 1 1 1 1
+
+- 6 5
+    - connected(6,5) false. 1 arr acc each find() => 2
+    - union(6,5)
+        - 2 arr acc for find()
+        - sz[6] = sz[5] = 1 => link 5 to 6 => id[5] = 6, sz[6] += sz[5] = 2
+idx: 0 1 2 3 4 5 6 7 8 9
+id[] 0 1 2 4 4 6 6 7 4 9
+sz[] 1 1 1 1 3 1 2 1 1 1
+
+- 9 4
+    -connected(9,4) false. find(9) = 9 (1), find(4) = 4 (1) => 2
+    - union(9,4)
+        - 2 arr acc for find()
+        - sz[9] = 1 < sz[4] = 3 => link 9 to 4 => id[9] = 4 => sz[4] += sz[9] = 4
+idx: 0 1 2 3 4 5 6 7 8 9
+id[] 0 1 2 4 4 6 6 7 4 4
+sz[] 1 1 1 1 4 1 2 1 1 1
+
+- 2 1
+    - connected(2,1) false. find(2) = 2 (1), find(1) = 1 (1)=> 2
+    - union(2,1)
+        - 2 arr acc for find()
+        - sz[2] = sz[1] = 1 => link 1 to 2 => id[1] = 2, sz[2] += sz[1] = 2
+idx: 0 1 2 3 4 5 6 7 8 9
+id[] 0 2 2 4 4 6 6 7 4 4
+sz[] 1 1 2 1 4 1 2 1 1 1
+
+- 8 9
+    - connected(8,9)
+        - find(8) = 4 (3 arr acc). find(9) = 4 (3 arr acc) => 6 arr acc total, return true. DONE. NO CHANGES
+
+- 5 0
+    - connected(5,0)
+        - find(5) = 6 (3 arr acc). find(0) = 0 (1 arr acc) => return fasle, 4 arr acc total
+    union(5,0)
+        - 4 arr acc for find()
+        - sz[6] = 2 > sz[0] =1 => link 0 to 6 => id[0] = 6, sz[6] += sz[0] = 3
+idx: 0 1 2 3 4 5 6 7 8 9
+id[] 6 2 2 4 4 6 6 7 4 4
+sz[] 1 1 2 1 4 1 3 1 1 1
+
+- 7 2
+    - connected(7,2)
+        - find(7) = 7 (1 arr acc). find(2) = 2 (1 arr acc) => false, 2 arr acc
+    - union(7,2)
+        - 2 arr acc for find()
+        - sz[7] = 1 < sz[2] = 2 => link 7 to 2 => id[7] = 2 => sz[2] += sz[7] = 3
+idx: 0 1 2 3 4 5 6 7 8 9
+id[] 6 2 2 4 4 6 6 2 4 4
+sz[] 1 1 3 1 4 1 3 1 1 1
+
+- 6 1
+    - connected(6,1)
+        - find(6) = 6 (1 arr acc). find(1) = 2 (3 arr acc) => false, 4 arr acc
+    union(6,1)
+        - 4 arr acc for find()
+        - sz[6] = 3 = sz[2] => link 2 to 6 => id[2] = 6 => sz[6] += sz[2] = 6
+idx: 0 1 2 3 4 5 6 7 8 9
+id[] 6 2 6 4 4 6 6 2 4 4
+sz[] 1 1 3 1 4 1 6 1 1 1
+
+- 1 0
+    - connected(1,0)
+        - find(1) = 6 (5 arr acc). find(0) = 6 (3 arr acc) => true. DONE. NO CHANGES, 8 arr acc
+
+- 6 7
+    - connected(6,7)
+        - find(6) = 6 (1), find(7) = 6 (5 arr acc) => true. DONE .NO CHANGES, 6 arr acc
+
+---------------------------------------------------------------------------------------------------------
+Worst case input
+idx: 0 1 2 3 4 5 6 7 8 9
+id[] 0 1 2 3 4 5 6 7 8 9
+sz[] 1 1 1 1 1 1 1 1 1 1
+
+- 0 1
+    - connected(0,1) false, 2 arr acc
+    - union(0,1)
+        - 2 arr acc for find()
+        - sz[0] = sz[1] = 1 => link 1 to 0 => id[1] = 0 (1 arr acc), sz[0] += sz[1] = 2
+idx: 0 1 2 3 4 5 6 7 8 9
+id[] 0 0 2 3 4 5 6 7 8 9
+sz[] 2 1 1 1 1 1 1 1 1 1
+
+- 2 3
+    - connected(2,3) false. 2 arr acc
+    - union(2,3)
+        - 2 arr acc for find()
+        - sz[2] = sz[3] = 1 => link 3 to 2 => id[3] = 2 (1 more array acc)  and sz[2] += sz[3] = 2
+idx: 0 1 2 3 4 5 6 7 8 9
+id[] 0 0 2 2 4 5 6 7 8 9
+sz[] 2 1 2 1 1 1 1 1 1 1
+
+- 4 5
+    same
+idx: 0 1 2 3 4 5 6 7 8 9
+id[] 0 0 2 2 4 4 6 7 8 9
+sz[] 2 1 2 1 2 1 1 1 1 1
+
+- 6 7
+     same
+idx: 0 1 2 3 4 5 6 7 8 9
+id[] 0 0 2 2 4 4 6 6 8 9
+sz[] 2 1 2 1 2 1 2 1 1 1
+
+So far, for each of these pairs, the total number of array access/ pair = 3.
+
+- 1 3
+    - connected(1,3). find(1) = 0 (3), find(3) = 2 (3) => false. 6 arr acc
+    - union(1,3)
+        - 6 for find()
+        - sz[0] = sz[2] = 2 => link 2 to 0 => id[2] = 0 (1 arr acc) => sz[0] += sz[2] = 4
+idx: 0 1 2 3 4 5 6 7 8 9
+id[] 0 0 0 2 4 4 6 6 8 9
+sz[] 4 1 2 1 2 1 2 1 1 1
+
+- 5 7
+    - connected(5,7). find(5) = 4 (3), find(7) = 6 (3) => false => 6 arr acc
+    - union(5,7)
+        - 6 arr acc for find()
+        - sz[4] = sz[6] = 2 => link 6 to 4 => id[6] = 4 and sz[4] += sz[6] = 4
+idx: 0 1 2 3 4 5 6 7 8 9
+id[] 0 0 0 2 4 4 4 6 8 9
+sz[] 4 1 2 1 4 1 2 1 1 1
+
+- 3 7
+    - connected(3,7). find(3) = 0 (5), find(7) = 4 (5) => 10 arr acc and false
+    - union(3,7)
+        - 10 arr acc for find()
+        - sz[0] = sz[4] = 4 => link 4 to 0 => id[4] = 0 => sz[0] += sz[4] = 8
+idx: 0 1 2 3 4 5 6 7 8 9
+id[] 0 0 0 2 0 4 4 6 8 9
+sz[] 8 1 2 1 4 1 2 1 1 1
+
+Our tree now looks like this
+            0
+           /|\
+          1 2 4
+            | |\
+            3 5 6
+                |
+                7
+Imagine we have other numbers from 8 to 15 and we also build like the above, we will have
+             8
+            /| \
+           9 10 12
+             |  | \
+             11 13 14
+                   |
+                   15
+
+- Now the worst case would happen if we have the input pair (7, 15) since they are the deepest nodes
+in their respective trees. But consider this:
+    - In a tree with 8 nodes (root 0), 7 is only 3 links away from the root (7 -> 6 -> 4 -> 0). Similarly,
+    15 is only 3 links away from root 8 => in worst case scenario, in any tree with size of k, the deepest node
+    can only be lg k (lg 8 = 3) links away from the root, or the height of the tree is lg k.
+    - An immediate result of this property is that it only takes 2*lg k + 1 array accesses to find(7) or find(15) => ~lg k
+    => connected is also ~ lg k (since connected is just calling find() 2 times and compare the root)
+    - Union also calls find() 2 times, and then all other operations takes constant time and array accesses (compare
+    the size of the 2 trees, then point one to another and update the size, all constant operations) => union() is also ~lg k
+    - Another interesting property is, after we union(7,15), since they are of equal size, we put 8 under 0. The height
+    of the whole subtree rooted at 8 however only increase by 1, even though the size of tree double
+
+    Mathematically, we are going to prove this by induction. Starting with the base case when each tree is its own site,
+    the height is 0 when size is 1 => correct since lg 1 = 0.
+
+    Now say we have 2 subtrees of size i and j. By the assumption, height(i) <= lg i and height(j) <= lg j.
+    We are going to prove that the height of the new tree k = i + j is going to be at most lg k
+
+    Without loss of generalization, we assume i >= j => we are going to put j under i (according to the algorithm)
+    The height of the new tree (size i + j = k) is going to be max(height(i), height(j) + 1)
+    height(i) <= lg i < lg k of course since i < k
+    height(j) + 1 <= lg j + 1 = lg 2j = lg (j + j) <= lg (i + j) = lg k => height(j) + 1 <= lg k
+
+    => no matter which one is the max height for the new tree, it is guaranteed to be at most lg k
+
+    - This property is very important, because it shows that no matter what is the respective size of the 2 sub-trees,
+    under weighted quick union algorithm, when we union them the height of the new tree remains within a log of the size of
+    it. Therefore, any subsequent find() operations performed on the new tree only takes lg k time (k is the size of the tree)
+    and hence connected() and union() will also be ~ lg k time.

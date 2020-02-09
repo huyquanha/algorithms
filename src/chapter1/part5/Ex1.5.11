@@ -1,0 +1,2 @@
+It's easy to implement, but does not worth it because you still have to iterate over every element in the array,
+you just save some time in the inner loop operation.

@@ -1,0 +1,3 @@
+Unordered array because for this data structure, insert takes constant time, while occasional
+remove the maximum takes ~N. However, when considering the amortized cost, it will be almost constant
+because remove the maximum is rarely called

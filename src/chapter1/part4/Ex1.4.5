@@ -1,0 +1,16 @@
+order of growth g(N) of f(N) is defined as
+lim f(N)/g(N) = 1
+N->inf
+
+a) g(N) = ~N
+b) g(N) =  1
+c) (1+1/N)(1+2/N) = 1 + 3/N + 2/N^2 ~ 1
+d) g(N) = ~N^3
+e) lg(2N)/ lg(N) = (lg(2) + lg(N))/ lg(N)
+                          =  1 + lg(2)/lg(N) ~ 1 => g(N) = 1
+f) when N -> inf lg(N^2+1) ~ lg(N^2) ~ 2lg(N)
+=> 2lg(N)/lg(N) = 2 => g(N) = 2
+g) say N = 2^x => N^100 = (2^x) ^ 100 = 2^(100x)
+=> 2^(100x-N) = 2^(100x-2^x)
+as N -> inf, x also -> inf => 100x will be too small compared to 2^x
+=> f(N) ~ 2^(-2^x) ~ 2^(-N) ~ 1/(2^N)

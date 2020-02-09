@@ -1,0 +1,35 @@
+Our aim is to keep the top card as always being the smaller of the 2, and putting the other card to the bottom of the deck,
+so say for the first pass, after 51 compares
+
+2 3 A 5 4
+2 A 5 4 3 (remember 3 as the first card pushed down)
+A 5 4 3 2
+A 4 3 2 5
+A 3 2 5 4 (now we encounter 3 again => we have gone through the whole array) and A is the smallest card. put A to the bottom
+
+Remember A as the smallest element encountered
+3 2 5 4 A
+2 5 4 A 3
+2 4 A 3 5
+2 A 3 5 4 (when we encounter A again, we know we've done the compare). Put 2 to bottom and then A to bottom
+
+3 5 4 2 A (remember 2 as the second smallest)
+
+3 4 2 A 5
+
+3 2 A 5 4 (encouter 2 again => done). put 3, then 2, then A to bottom of deck. Remember 3 as the next smallest
+
+5 4 3 2 A
+
+4 3 2 A 5 (encounter 3 => done). put 4, 3 2, A to bottom
+
+5 4 3 2 A (encounter 4 and 5 > 4 => done). The deck is not sorted from bottom to top
+
+For N cards, this approach takes N - 1 compares for the first card, worst case N -1 exchanges (if it's the smallest item)
+and N-1 pop top and push bottom. For the second card it's N -2, then N -3,....2,1 => ~ N^2/2 compares, exchanges and pop-push
+
+
+
+
+
+

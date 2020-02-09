@@ -1,0 +1,61 @@
+After inserting, assume the position of the new element is N, it will swim up the heap, exchanging with N/2, N/4,...
+and eventually 1. So now the element is at 1, the element that was at 1 is now at 2 or 3, ...the element that was
+at N/4 is now at N/2, and the element that was at N/2 is now at N
+after the delMax, the element that was at N/2 is now swapped into position 1 and it will sink down. The element that
+was at 1 (which is now at either 2 or 3) will be the larger element, since it's already the larger element before,
+so it will be swapped back into position 1, and consequently the element at N/2 is swapped all the way back to its previous
+position.
+
+10 9 8 7 6 5 4 3 2 1
+insert 11
+10 9 8 7 6 5 4 3 2 1 11
+11 is swapped with 6
+10 9 8 7 11 5 4 3 2 1 6
+11 is swapped with 9
+10 11 8 7 9 5 4 3 2 1 6
+11 is swapped with 10
+11 10 8 7 9 5 4 3 2 1 6
+
+remove 11
+11 is swapped with 6
+6 10 8 7 9 5 4 3 2 1 11
+6 10 8 7 9 5 4 3 2 1
+6 is swapped with 10 since it's larger
+10 6 8 7 9 5 4 3 2 1
+6 is swapped with 9 since it's larger (because it used to be the parent just like 10)
+10 9 8 7 6 5 4 3 2 1
+now 6 is larger than both children and it's back at its initial position. We can see that the heap is exactly as it was
+
+- With 2 inserts followed by 2 delMax operations
+    - We look at this reversely, from the second delMax: the first delMax will leave the priority queue
+    as it was after the first insert (proved above). The second delMax will leave the priority queue as it was
+    before the first insert. So the priority queue will stay exactly the same
+Example:
+10 9 8 7 6 5 4 3 2 1
+insert 11
+10 9 8 7 6 5 4 3 2 1 11
+11 is swapped with 6
+10 9 8 7 11 5 4 3 2 1 6
+11 is swapped with 9
+10 11 8 7 9 5 4 3 2 1 6
+11 is swapped with 10
+11 10 8 7 9 5 4 3 2 1 6
+
+insert 12
+11 10 8 7 9 5 4 3 2 1 6 12
+swap 12 with 5
+11 10 8 7 9 12 4 3 2 1 6 5
+swap 12 with 8
+11 10 12 7 9 8 4 3 2 1 6 5
+swap 12 with 11
+12 10 11 7 9 8 4 3 2 1 6 5
+
+remove 12
+5 10 11 7 9 8 4 3 2 1 6 12
+5 10 11 7 9 8 4 3 2 1 6
+swap 5 with 11
+11 10 5 7 9 8 4 3 2 1 6
+swap 5 with 8
+11 10 8 7 9 5 4 3 2 1 6
+
+now we can see that we get back to the priority queue before the second insert. The rest is done

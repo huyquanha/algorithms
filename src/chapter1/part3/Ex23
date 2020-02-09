@@ -1,0 +1,3 @@
+When you set x.next = t, you abandon every nodes following x, which
+x.next initially points to
+When you set t.next to x.next, since x.next points to t now, t.next points to itself.

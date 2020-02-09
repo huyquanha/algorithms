@@ -1,0 +1,20 @@
+public static int count(int[] a) {
+    int N = a.length; //A
+    int cnt = 0;
+    for (int i = 0; i< N ; i++) { //B
+        for (int j = i+1; j < N; j++) { //C
+            if (a[i] + a[j] == 0) {
+                cnt++; //D
+            }
+        }
+    }
+    return cnt;
+}
+
+N-1 + N-2 + ... + 2 + 1 = N(N-1)/2
+
+statement   time(s)     freq    total
+A           t1          1       t1
+B           t2          N       t2*N
+C           t3        N(N-1)/2  N*(N-1)/2 * t3
+D           t4        x(dep inp)    t4*x

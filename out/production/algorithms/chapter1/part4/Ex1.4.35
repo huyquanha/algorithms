@@ -1,0 +1,22 @@
+- Linked list implementation
+    - To push each int to the stack, we need to create a new Node that contains the int, we have a new reference
+    to a Node on the stack, and we also need to reference the old first Node => 1 more object created, and 2 more references
+    => for N int values, we need N objects created and 2N data references
+    - To push the int as Integer, we need to first create an Integer object to hold the int, and then the Node -> 2N objects.
+    We also need one more reference per int value for the Integer object => 3N data references
+
+- Resizing array
+    - To simplify things, we assume N is a power of 2
+    - Pushing as int:
+        - To increase the size of the array to hold N elements from 2, we need lgN resizing (since 2^lgN = N).
+        Each time we resize we create a new array to transfer the old values to => lgN new objects created
+        - Each time we resize, we create a new array double the size => we create new array references. Total is
+        S = 2 + 4 + 8 + ... + 2N
+        2S =    4 + 8 + ....+ 2N + 4N
+        => S = 4N - 2
+        Each new value being pushed in also results in a new reference => N references => total references is 5N -2 ~ 5N
+    - Pushing as Integer:
+        - The number of objects created due to resizing is also lgN just like with int, however each time we add a new
+        integer, we need to create an Integer object to hold it => N + lgN object created. With N being very large, lgN
+        is negligible => ~ N
+        - This is also ~ 5N like the above

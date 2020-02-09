@@ -1,0 +1,13 @@
+- For an array with just 2 distinct keys, a and b with the assumption that a < b
+    - If the partitioning element is a, i will have to stop at every element (since it's either a = a or b > a),
+    and j stops only at equal elements (if it encounters b it still moves on). This makes j moving quicker
+    than i and the crossing position of the 2 pointers will be to the left of the middle.
+    - If the partitioning element is b, i will stops only at equal element (if it encounters a it still moves on), but j stops
+    at every element. Hence, the crossing position will be to the right of the middle
+    - In either case, the performance will be slower compared to an array only 1 distinct key, because the ideal
+    is when the partitioning element is at the middle
+
+- For an array with 3 distinct keys, a,b,c with the assumption that a < b < c
+    - Same as before, if the partitioning element is a or c, the positiion will be to the left or right of middle
+    - If the partitioning element is b, high chances is that the position will be somewhat in the middle
+    - This still makes the performance slower

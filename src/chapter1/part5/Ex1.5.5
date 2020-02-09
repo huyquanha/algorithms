@@ -1,0 +1,9 @@
+Dynamic Connectivity with Quick Find
+N = 10^9 => equivalent to N connected components at the beginning
+- For each call to connected(), 2 calls to find() is needed, which cost 1 array access each.
+- For each call to union(), 2 calls to find() is needed, which cost 1 array access each.
+if 2 numbers need to be joined, we wil need to iterate over all the sites to change
+the id[] of one to the other. This iteration already takes N array accesses or N instructions. With the assumption
+that each inner for loop requires 10 machine instructions, the number of instructions per union() will be N + 10 + 2 = N + 12
+- For 10^6 input pairs, let's assume all of them requires a union().
+=> 10^6 * (10^9 + 12) / 10^9 ~ 10^6 seconds = 1000000 seconds ~ 11.57 days

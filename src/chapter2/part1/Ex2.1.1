@@ -1,0 +1,28 @@
+Initially: E A S Y Q U E S T I O N
+- N-1 compares, 1 exchange
+A | E S Y Q U E S T I O N
+- N-2 compares, 1 exchange but the same position
+A E | S Y Q U E S T I O N
+- N-3 compares, 1 exchange
+A E E | Y Q U S S T I O N
+- N-4 compares, 1 exchange
+A E E I | Q U S S T Y O N
+- N-5 compares, 1 exchange
+A E E I N | U S S T Y O Q
+- N-6 compares, 1 exchange
+A E E I N O | S S T Y U Q
+- N-7 comp, 1 exch
+A E E I N O Q | S T Y U S
+- 4 comp, 1 exch but same pos
+A E E I N O Q S | T Y U S
+- 3 comp, 1 exch
+A E E I N O Q S S | Y U T
+- 2 comp, 1 exch
+A E E I N O Q S S T | U Y
+- 1 comp, 1 exch but same pos
+A E E I N O Q S S T U | Y
+- 0 comp, 1 exch but same pos
+A E E I N O Q S S T U Y
+
+=> Total compares: N-1 + N-2 + ... + 3 + 2 + 1 + 0  ~ N^2/2
+Total exchanges: 1 exch for each pass => N exchanges.

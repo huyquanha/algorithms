@@ -1,0 +1,79 @@
+a[] = A E Q S U Y E I N O S T
+
+Copy content over to aux[]
+aux[] = A E Q S U Y E I N O S T
+lo = 0, mid = 5, hi = 11
+i = lo = 0, j = mid + 1 = 6
+
+A E Q S U Y E I N O S T
+i           j
+aux[i] < aux[j] => a[0] = A, i++ => i = 1
+
+A
+
+A E Q S U Y E I N O S T
+  i         j
+aux[i] = aux[j] => a[1] = aux[i] = A => i++ => i = 2
+
+A E
+
+A E Q S U Y E I N O S T
+    i       j
+aux[j] < aux[i] => a[2] = aux[j] = E => j++ => j = 7
+
+A E E
+
+A E Q S U Y E I N O S T
+    i         j
+aux[j] < aux[i] => a[3] = I, j = 8
+
+A E E I
+
+A E Q S U Y E I N O S T
+    i           j
+aux[j] < aux[i] => a[4] = N, j = 9
+
+A E E I N
+
+A E Q S U Y E I N O S T
+    i             j
+aux[j] < aux[i] => a[5] = O, j = 10
+
+A E E I N O
+
+A E Q S U Y E I N O S T
+    i               j
+aux[i] < aux[j] => a[6] = Q, i = 3
+
+A E E I N O Q
+
+A E Q S U Y E I N O S T
+      i             j
+aux[i] = aux[j] => a[6] = aux[i] = S, i = 4
+
+A E E I N O Q S
+
+A E Q S U Y E I N O S T
+        i           j
+aux[j] < aux[i] => a[7] = S, j = 11
+
+A E E I N O Q S S
+
+A E Q S U Y E I N O S T
+        i             j
+aux[j] < aux[i] => a[8] = T, j = 12
+
+A E E I N O Q S S T
+
+A E Q S U Y E I N O S T
+        i               j
+From now on, j > hi => a[k++] = aux[i++]
+
+A E E I N O Q S S T U Y
+
+
+
+
+
+
+

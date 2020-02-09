@@ -1,0 +1,80 @@
+v = B
+B A B A B A B A C A D A B R A
+lt                          gt
+  i
+
+a[i] = A < v => exch(a, i++, lt++)
+A B B A B A B A C A D A B R A
+  lt                        gt
+    i
+
+a[i] = B = v => i++
+A B B A B A B A C A D A B R A
+  lt                        gt
+      i
+
+a[i] = A < v => exch(a, i++, lt++)
+A A B B B A B A C A D A B R A
+    lt                      gt
+        i
+
+a[i] = B = v => i++
+A A B B B A B A C A D A B R A
+    lt                      gt
+          i
+
+a[i] = A < v => exch(a, i++, lt++)
+A A A B B B B A C A D A B R A
+      lt                    gt
+            i
+
+a[i] = B = v => i++
+A A A B B B B A C A D A B R A
+      lt                    gt
+              i
+
+a[i] = A < v => exch(a, i++, lt++)
+A A A A B B B B C A D A B R A
+        lt                  gt
+                i
+
+a[i] = C > v => exch(a, i, gt--) (the reason we don't increment i immediately because we don't know if the element
+currently pointed at by gt is less than, equal or larger than v. It needs another examination. The reason we can increment i
+immediately after exchanging with lt is because we know for sure the element pointed to by lt is equal to v)
+A A A A B B B B A A D A B R C
+        lt                gt
+                i
+
+a[i] = A < v => exch(a, i++, lt++)
+A A A A A B B B B A D A B R C
+          lt              gt
+                  i
+
+a[i] = A < v => exch(a, i++, lt++)
+A A A A A A B B B B D A B R C
+            lt            gt
+                    i
+
+a[i] = D > v => exch(a, i, gt--)
+A A A A A A B B B B R A B D C
+            lt          gt
+                    i
+
+a[i] = R > v => exch(a, i, gt--)
+A A A A A A B B B B B A R D C
+            lt        gt
+                    i
+
+a[i] = B = v => i++
+A A A A A A B B B B B A R D C
+            lt        gt
+                      i
+
+while (i <= gt) still true, we continue
+a[i] = A < v => exch(a, i++, lt++)
+A A A A A A A B B B B B R D C
+              lt      gt
+                        i
+
+now i > gt and the while loop breaks. We can see that we have put all the elements equal to v (B) in the middle,
+with all elements smaller to v on the left and all elements larger than v on the right.

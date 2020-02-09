@@ -1,0 +1,6 @@
+Swapping the content of a and b
+This is very efficient, because what you are actually swapping is not the content of the
+arrays itself, but the references to the arrays
+First a reference t is set to a
+Then we point a to reference to b (t is now holding the reference to a's array)
+Then we point b to what t is pointing (which is the content of a's array)

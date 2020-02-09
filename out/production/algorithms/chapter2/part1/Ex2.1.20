@@ -1,0 +1,2 @@
+Since shellsort is just multiple insertion sort with varied increments, its best case will be insertion sort
+best case, which is when the array is already sorted

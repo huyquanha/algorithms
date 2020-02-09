@@ -1,0 +1,10 @@
+After the first insert, the size of the priority queue becomes k + 1. The heap order is repaired,
+so the minimum item is still at position 1
+removing the minimum leave behind the k largest of the k + 1 items encountered so far, since the removed
+item is the smallest of all
+
+After the second insert, once again the size of the priority queue becomes k + 1 (the number of elements
+encountered is k + 2 however). Removing the minimum once again leave beind k largest of k + 2 items encountered
+
+After the N - k insert, once again the size of the priority queue becomes k + 1, but the number of elements encountered
+is k + (N-k) = N. Removing the minimum leave behind k largest of N elements encountered.

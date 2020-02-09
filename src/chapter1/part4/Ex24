@@ -1,0 +1,26 @@
+~lgN broken eggs and ~lgN throws:
+    - lo = 1, hi = N
+    - mid = lo + (hi-lo)/2
+    - Throw an egg from mid
+    - If it's broken, F in [lo,mid]
+    - If it's not broken, F in (mid, hi]
+    - Narrowing down the search to half every time -> ~lgN throws to find F
+    - In the worst case, we are always end up in the left half when the egg is always
+    broken => ~lgN broken eggs at worst.
+
+~ 2lgF
+    - Say 2^X < F <= 2^(X+1)
+    => X < lgF <= X+1
+    => 2X < 2lgF <= 2(X+1)
+
+    - We try with x = 0, x= 1, x= 2,...=> lo floor is 1,2,4,...
+    - when x = X the egg is still not broken (because F > 2^X), and we already tried X+1 times (start from 0)
+    - when x = X+1 the egg will be broken (because F <= 2^(X+1)), one more try, just one egg broken
+    - Now we narrow down the range for F is in (2^X, 2^(X+1)]
+    - If we call the length of this range N => N = 2^(X+1) - 2^X = 2^X
+    - Apply the same ~lgN algorithm above to find F => worst case cost will be X throws and X broken eggs
+    - Combine with the trials before
+        - Total times trying: X + 1 + 1 + X = 2X +2 = 2*(X+1) (worst case)
+        - Total broken eggs: 1 + X (worst case)
+    - So, with F <= 2^(X+1), the order of growth of this algorithm is ~2lgF, with the worst case
+    being 2(X+1)

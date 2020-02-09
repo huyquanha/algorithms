@@ -1,0 +1,41 @@
+(a,a^3),(b,b^3),(c,c^3) collinear => a+b+c=0
+
+Since collinear, all of them have to be on a line y = mx+n
+=> a^3 = ma +n
+=> b^3 = mb +n
+=> c^3 = mc +n
+=> m = (a^3-b^3)/(a-b) = a^2 + ab + b^2
+=> also m = (b^3-c^3)/(b-c) = b^2 + bc + c^2
+=> a^2 + ab + b^2 = b^2 + bc + c^2
+=> a^2 + ab - bc - c^2 = 0
+=> (a-c)(a+c) + b(a-c) = 0
+=> (a + b + c) (a-c) = 0
+
+Since (a,a^3) and (c,c^3) are 2 distinct points => a != c => a-c != 0
+=> a+b+c = 0
+
+a + b + c = 0 => A= (a,a^3), B = (b,b^3), C= (c,c^3) collinear
+- For 2 points, we can always find a line that go through them
+    - For point A and point B, y = mx+n
+    => a^3 = ma + n
+    => b^3 = mb + n
+    => m = a^2 + ab + b^2
+    => n = a^3 - (a^2+ab+b^2)a = -ab(a+b)
+    => y = (a^2+ab+b^2)x - ab(a+b)
+
+Since a + b + c = 0 => c = -(a+b)
+We have to prove that c^3 = (a^2+ab+b^2)c - ab(a+b)
+                          = (a^2 + ab + b^2)c + ab * c
+                          = (a^2 + 2ab + b^2) c
+                          = (a+b)^2 * c
+                          = c^3 => true since (a+b) ^ 2 = (-(a+b))^2 = c^2
+
+So we have that A,B,C collinear <=> a+b+c=0
+
+Now, how does that help with our problem?
+    - You are given a set of N distinct number to find the count of 3-sum
+    - For each number x in there, you compute a point in the plane (x,x^3)
+    - From an array of N numbers, you have an array of N distinct points with the form (x,x^3)
+    - Now use the magic algorithm to compute the number of triples that are collinear
+    - Since each and every such triple will correspond to a 3-sum in the original
+    by the previous proof, this number will also be the number of 3-sum.

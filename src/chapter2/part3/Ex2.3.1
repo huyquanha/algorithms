@@ -1,0 +1,78 @@
+E A S Y Q U E S T I O N
+i=lo                   j=hi+1
+Partitioning element v = E
+
+E A S Y Q U E S T I O N
+  i                    j
+A < E => continue
+
+E A S Y Q U E S T I O N
+    i                  j
+S > E => stop
+
+E A S Y Q U E S T I O N
+    i                 j
+N > E => continue
+
+E A S Y Q U E S T I O N
+    i               j
+O > E => continue
+
+E A S Y Q U E S T I O N
+    i             j
+I > E => continue
+
+E A S Y Q U E S T I O N
+    i           j
+T > E => continue
+
+E A S Y Q U E S T I O N
+    i         j
+S > E => continue
+
+E A S Y Q U E S T I O N
+    i       j
+E = E => stop
+
+Check if i >= j, not yet
+
+exch(a,i,j)
+E A E Y Q U S S T I O N
+    i       j
+
+E A E Y Q U S S T I O N
+      i     j
+Y > E => stop
+
+E A E Y Q U S S T I O N
+      i   j
+U > E => continue
+
+E A E Y Q U S S T I O N
+      i j
+Q > E => continue
+
+E A E Y Q U S S T I O N
+      i
+      j
+Y > E => continue
+
+E A E Y Q U S S T I O N
+    j i
+E = E => stop
+
+Check if i >= j, true => break
+
+
+exch(a, lo, j)
+E A E Y Q U S S T I O N
+    j i
+j is now pointing to the pivot element. We can see that all elements to the left of j are <= E, and all elements
+to the right of j are >= E
+
+
+
+
+
+
+

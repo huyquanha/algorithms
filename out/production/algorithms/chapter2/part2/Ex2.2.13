@@ -1,0 +1,11 @@
+Prove: The expected number of compares >= ~ N lg N
+
+The expected (or average) number of compares = total path lengths from the root to all leaves / number of leaves
+
+In order for the expected number of compares to be minimized, the number of leaves must be maximized
+The number of leaves is maximized when the tree is perfectly balanced
+When the tree is perfectly balanced, the length of the path from root to any leave is the same and equals h (tree height)
+We also have another property, which is: the number of leaves >= N!
+For a perfectly balanced tree, the number of leaves = 2^h
+=> 2^h >= N!
+=> h >= lg N! ~ N lg N => the expected number of compares >= ~N lg N

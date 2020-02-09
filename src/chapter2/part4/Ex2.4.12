@@ -1,0 +1,16 @@
+- Heap
+    - find the maximum: constant time
+    - insert: ~lgN
+    - remove maximum: ~lgN
+- Unordered array
+    - find the maximum: ~N
+    - insert: constant
+    - remove maximum: ~N
+- Ordered array
+    - find the maximum: constant
+    - insert: ~N in the worst case
+    - remove maximum: constant
+
+Since finding the maximum dominates the number of operations, heap and ordered array are much better than unordered array
+If the number of insert is larger than the number of remove maximum, I would recommend using Heap. If the number of
+insert is smaller than the number of remove maximum, I would recomment using ordered array

@@ -1,0 +1,14 @@
+public void union(int p, int q)
+{
+    if (connected(p, q)) return;
+    // Rename p’s component to q’s name.
+    for (int i = 0; i < id.length; i++)
+        if (id[i] == id[p]) id[i] = id[q];
+    count--;
+}
+
+In the loop, when i = p, id[i] == id[p] is correct => id[i] = id[q] or id[p] = id[q]
+Since we change the value of id[p] directly, all the remaining elements in the array that might actually equal id[p]
+won't be detected anymore.
+
+The correct implementation is to store the value of id[p] and id[q] outside of the loop.

@@ -1,0 +1,249 @@
+E A S Y Q U E S T I O N
+v
+E A E Y Q U S S T I O N
+    v
+E A
+v
+i   j
+  i j
+A < E, however, i == hi => break
+
+E A
+  i
+  j
+A < E => stop
+
+Check if i >= j => true => break
+
+exch(a,lo,j)
+A E
+  v
+
+A
+lo
+hi
+lo >= hi => done
+
+Y Q U S S T I O N
+v
+i                j
+Y Q U S S T I O N
+  i              j
+Q < Y => continue
+
+Y Q U S S T I O N
+    i            j
+U < Y => continue
+
+...
+
+Y Q U S S T I O N
+                i j
+N < Y, however, i == hi => stop
+
+Y Q U S S T I O N
+                i
+                j
+N < Y => stop
+
+Check if i >= j, true => break
+
+exch(a, lo, j)
+N Q U S S T I O Y
+                v
+
+N Q U S S T I O
+v
+i              j
+
+N Q U S S T I O
+  i            j
+Q > N => stop
+
+N Q U S S T I O
+  i           j
+O > N => continue
+
+N Q U S S T I O
+  i         j
+I < N => stop
+
+check if i >= j => not yet
+
+N I U S S T Q O
+  i         j
+
+N I U S S T Q O
+    i       j
+U > N => stop
+
+N I U S S T Q O
+    i     j
+T > N => continue
+
+N I U S S T Q O
+    i   j
+S > N => continue
+
+N I U S S T Q O
+    i j
+S > N => continue
+
+N I U S S T Q O
+    i
+    j
+U > N => continue
+
+N I U S S T Q O
+  j i
+I < N => stop
+
+check if i >= j => true => break
+
+exch(a, lo, j)
+I N U S S T Q O
+  v
+
+I
+lo = hi => done
+
+I N U S S T Q O
+    v
+    i          j
+
+I N U S S T Q O
+      i        j
+S < U => continue
+
+I N U S S T Q O
+        i      j
+S < U => continue
+
+I N U S S T Q O
+          i    j
+T < U => continue
+
+I N U S S T Q O
+            i  j
+Q < U => continue
+
+I N U S S T Q O
+              i j
+O < U, but i == hi => break
+
+I N U S S T Q O
+              i
+              j
+O < U => stop
+
+check if i >= j => true => break
+
+exch(a, lo, j)
+O S S T Q U
+
+O S S T Q
+v
+i        j
+
+O S S T Q
+  i      j
+S > O => stop
+
+O S S T Q
+  i     j
+Q > O => continue
+
+O S S T Q
+  i   j
+T > O => continue
+
+O S S T Q
+  i j
+S > O => continue
+
+O S S T Q
+  i
+  j
+S > O => continue
+
+O S S T Q
+j i
+O = O => stop (we can see here the check j == lo is redundant because it stops from the while condition
+
+check if i >= j => true => break
+
+exch(a,lo,j)
+O S S T Q
+j i
+
+S S T Q
+v
+i      j
+
+S S T Q
+  i    j
+S = S => stop
+
+S S T Q
+  i   j
+Q < S => stop
+
+i >= j false
+
+exch(a, i, j)
+S Q T S
+  i   j
+
+S Q T S
+    i j
+T > S => stop
+
+S Q T S
+    i
+    j
+T > S => continue
+
+S Q T S
+  j i
+Q < S => stop
+
+check i >= j => true => break
+
+exch(a,lo,j)
+Q S T S
+  v
+
+Q done
+
+T S
+v
+i   j
+
+T S
+  i j
+S < T, but i == hi => break
+
+T S
+  i
+  j
+S < T => stop
+
+check if i >= j => true => break
+
+exch(a,lo,j)
+S T
+
+S done
+
+
+
+
+
+
+
+
+
+
+
+
+
