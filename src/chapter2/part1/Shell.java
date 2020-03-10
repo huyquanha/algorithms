@@ -12,7 +12,7 @@ public class Shell {
             h = 3 * h + 1;
         }
         while (h >= 1) {
-            for (int i = h; i< N; i++) {
+            for (int i = h; i < N; i++) {
                 for (int j = i; j >= h && less(a[j], a[j-h]); j -= h) {
                     exch(a, j, j-h);
                 }

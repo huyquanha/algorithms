@@ -1,0 +1,30 @@
+                p[]
+Insertion sort: 0 1 2 3 4 5 6 (same order, easily see from the code)
+Selection sort: 0 1 2 3 4 5 6 (easily see from code)
+Shellsort: 0 1 2 3 4 5 6
+Mergesort: 0 1 2 3 4 5 6
+Quicksort: exch(1,6) (1 and 6 is the indices of the keys being exchanged)
+           exch(2,5)
+           exch(3,4)
+           exch(0,4)
+=> first pass: 4 6 5 0 3 2 1. Now 0 is in the correct position
+4 6 5 => exch(6,5)
+         exch(4,5)
+         => 5 4 6 => 4 is in correct position
+3 2 1 => exch(2,1)
+         exch(1,3)
+         => 1 3 2 => 3 is in correct position
+Now the subarray size is 1 or lo == hi => we return
+At the end: 5 4 6 0 1 3 2
+
+Heapsort: 0 1 2 3 4 5 6
+- Max heap construction: no exch are performed because all keys are equal when sinking. The order is already a max heap
+- Sorting: exchange the root back to the end, then sink the new root. However since all keys are equal, sink() has no effect
+   0 1 2 3 4 5 6
+   6 1 2 3 4 5 | 0
+   5 1 2 3 4 | 6 0
+   4 1 2 3 | 5 6 0
+   3 1 2 | 4 5 6 0
+   2 1 | 3 4 5 6 0
+   1 2 3 4 5 6 0 => done
+

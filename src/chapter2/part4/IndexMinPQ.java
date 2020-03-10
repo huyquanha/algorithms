@@ -48,15 +48,9 @@ public class IndexMinPQ<Item extends Comparable<Item>> {
         if (!contains(k)) {
             throw new NoSuchElementException("Index is not in priority queue");
         }
-        int itemPos = qp[k];
-        Item currentItem = keys[k];
         keys[k] = item;
-        int cmp = item.compareTo(currentItem);
-        if (cmp < 0) {
-            swim(itemPos);
-        } else if (cmp > 0) {
-            sink(itemPos);
-        }
+        swim(qp[k]);
+        sink(qp[k]);
     }
 
     public boolean contains(int k) {
@@ -67,10 +61,9 @@ public class IndexMinPQ<Item extends Comparable<Item>> {
         if (!contains(k)) {
             throw new NoSuchElementException("Index is not in priority queue");
         }
-        int itemPos = qp[k];
-        exch(itemPos, N--);
-        swim(itemPos);
-        sink(itemPos);
+        exch(qp[k], N--);
+        swim(qp[k]);
+        sink(qp[k]);
         keys[k] = null;
         qp[k] = -1;
     }

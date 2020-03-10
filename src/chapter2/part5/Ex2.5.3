@@ -1,0 +1,11 @@
+if a.amount - 0.005 <= b.amount <= a.amount + 0.005 then we conclude a = b (1)
+if a.amount - 0.005 <= c.amount <= a.amount + 0.005 then we conclude a = c (2)
+
+From (1) and (2) we can conclude that b = c (3)
+
+However, if b. amount = a.amount - 0.005, and c.amount = a.amount + 0.005,
+then b.amount < c.amount - 0.005 => b < c (4)
+
+(3) and (4) conclicts since b cannot be both = c and < c
+
+Fix: get rid of all the 0.005

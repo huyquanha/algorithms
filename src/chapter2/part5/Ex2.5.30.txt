@@ -1,0 +1,33 @@
+We have a matrix X (m x n), with m is number of rows and n is number of columns
+After sorting every column, for each column j (1 <= j <= n), we have this condition:
+    - For every row i (1 <= i < m), x[i][j] <= x[i+1][j] (note that here we used 1-indexed base)
+
+=> this means that for each element a in the previous row, there will be at least one element b in the next row
+that satisfies: b >= a
+
+- After sorting every row, if every column stays sorted, then we need to prove that for every column j,
+ x[i][j] <= x[i+1][j] is still true
+
+- We prove this is still the case by negation: suppose after sorting every row, there exists an element
+on column j such that x[i][j] > x[i+1][j]
+    - Row i is sorted => x[i][j] <= x[i][j+1...n] => x[i+1][j] < x[i][j] <= x[i][j+1...n] => x[i+1][j] < x[i][j...n]
+    - Row i+1 is sorted => x[i+1][j] >= x[i+1][1...j-1] => x[i+1][1...j-1] < x[i][j...n] (1)
+    - x[i+1][j] < x[i][j...n] (2)
+    - From (1) and (2) we have x[i+1][1...j] < x[i][j...n] (3)
+
+- Another way to say (3) is, all elements to the left of column j (including j) on row (i+1) is smaller than all elements to the
+right of column j on row i (including j)
+
+- However, the invariance that each element on row i will have at least a larger than or equal element on row (i+1)
+is still true, because sorting the row doesn't change the value of the elements on a row, just their positions
+
+- Now that x[i+1][1...j] cannot qualify, since they are all smaller than x[i][j...n],
+it means all elements to the right of column j on row (i+1): x[i+1][j+1...n] >= x[i][j...n]
+
+There are (n - j + 1) elements on row i that needs an element on row i+1 larger or equal to itself, but
+x[i+1][j+1...n] only contains n - j elements => one element on row i won't have a corresponding larger or equal element on row i+1
+
+=> the invariance is violated => we cannot have an element x[i][j] > x[i+1][j] for any j from 1 to n
+
+=> after sorting the rows, the columns stay sorted. The theorem is TRUE
+

@@ -1,0 +1,10 @@
+Selection Sort continuously find the next minimum item and exchange it to the front of the array.
+Imagine we have this array 5 4 1 4 2 3
+
+first iteration: min is 1 => 1 4 5 4 2 3
+second iteration: min is 2, exch with the first 4 => 1 2 5 4 4 3
+As we can see, the first 4 is moved behind the second 4
+next is 3, then 4, then 5, and at the end the first 4 is still behind the second 4.
+
+In this example, the effect of unstable is not clear because we are sorting primitive type. But it will make
+more senes if you think of the 2 4s as reference objects.

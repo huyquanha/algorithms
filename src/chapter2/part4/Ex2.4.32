@@ -1,0 +1,6 @@
+It's possible to develop a compared-based implemenation of MinPQ that uses ~ log log N compares for insert,
+as demonstrated in Ex2.4.31. However, it's impossible to do the same for "delete the minimum" operation.
+While insert involves the swim() operation, which follows a certain path from the leave back to the root
+of the tree, and you can just keep dividing by 2 to find the parent, delete the minimum involves the sink()
+operation, for which the path from the root to a leave is undetermined. It depends on which children is the smaller,
+so it's necessary that we traverse through every node one by one.

@@ -4,6 +4,9 @@ import chapter2.part1.Insertion;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
+/**
+ * Ex2.3.24
+ */
 public class SampleSort {
     public static void sort(Comparable[] a, int k) {
         int N = a.length;

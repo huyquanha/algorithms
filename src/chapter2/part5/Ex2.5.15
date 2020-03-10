@@ -1,0 +1,9 @@
+We sort the list of emails by the domain names (splitting using the '@' delimiter), then compare the emails
+by the part that is after the delimiter. This way, we group together emails that come from the same domain,
+and we can send an email from a user of the same domain.
+
+Bonus: based on the previous exercise (Ex2.5.14), it might even be more beneficial if we sort the domain
+names using the reverse domain. For example: cs.princeton.edu and it.princeton.edu would appear very far
+from each other by a normal sort, even though they are actually 2 subdomains of princeton.edu.
+By sorting them by the reverse domain name, they would be very close to each other (edu.princeton.cs and
+edu.princeton.it are almost similar).

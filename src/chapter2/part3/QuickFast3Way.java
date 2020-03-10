@@ -3,6 +3,9 @@ package chapter2.part3;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
+/**
+ * Ex2.3.22
+ */
 public class QuickFast3Way {
     public static void sort(Comparable[] a) {
         int N = a.length;
