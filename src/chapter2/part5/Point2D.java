@@ -34,6 +34,7 @@ public class Point2D {
     }
 
     private double x, y;
+    private int hash;
 
     public Point2D(double x, double y) {
         this.x = x;
@@ -91,5 +92,22 @@ public class Point2D {
 
     public void draw() {
         StdDraw.point(x, y);
+    }
+
+    /**
+     * Ex3.4.22
+     * saves the value in hash instance variable for caching as well
+     * @return
+     */
+    @Override
+    public int hashCode() {
+        int h = hash;
+        if (h == 0) {
+            h = 17;
+            h = 31 * h + ((Double) x).hashCode();
+            h = 31 * h + ((Double) y).hashCode();
+            hash = h;
+        }
+        return h;
     }
 }

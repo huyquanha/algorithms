@@ -1,0 +1,9 @@
+Arrays in Java are covariant, which means the type information is needed and retained at run time
+    - For example, an array of String has a class of String[], and an array of int has a class of int[] at run time, which are different
+Generics on the other hand are checked at compile time and the type information is 'erased' at run time (type erasure)
+    - For example, and ArrayList<String> at run time has a type of ArrayList, and an ArrayList<Integer> also has a type
+    of ArrayList at run time (type parameterized type String or Integer are only used by the compiler at compile time
+    and to check and then erased at run-time)
+
+Therefore, if generic array creation is allowed, at the time the array is actually created in memory (which is
+at run time, not compile time), there would be no type information left to create it with => generic array creation is disallowed
