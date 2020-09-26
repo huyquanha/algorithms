@@ -1,4 +1,4 @@
-package chapter1.part5;
+package web.week1.unionFind;
 
 public class WeightedQuickUnionCanonicalUF {
     private int id[];

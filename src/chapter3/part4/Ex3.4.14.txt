@@ -1,0 +1,9 @@
+Search miss: the input key is not in the table
+
+a) It could take linear running time if the hash of the input key collide with one of the keys in the cluster, but it could
+also just take O(1) if the hash of the input key fall outside of the cluster (which will be null => done)
+b) We can say nothing about this (no expected linear running time). If all the keys hash to different indices,
+but they fill in the null holes and form a continuous cluster => can be linear. But if they are separated by null holes,
+then you probably just need 1 or 2 probes to have a search miss
+c) Same as a
+d) constant time (1 or 2 probes) to get a search miss

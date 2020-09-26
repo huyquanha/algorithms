@@ -1,0 +1,24 @@
+1 node:
+- internal path length: 0
+- external path length: 2
+
+2 node:
+    k1
+   /  \
+  k2
+ / \
+     - internal path length: 1
+     - external path length: 5
+     - notice that each time you add a new key in, you remove one null link but introduce 2 more null links
+
+- Without loss of generalization, let's say we have a node x with a path length to the root of h:
+    - Let's say the next key we insert in is a child of x, we call y. y's path length to root is h + 1
+    - Internal path length hence increase by h + 1 (path length of y)
+    - We lose one null link (previously there in place of y) => external path length decrease by h + 1
+    - We add 2 more null links (children of y) => external path length increase by 2 * (h+2)
+    - Overall, the external path length increase by 2*(h+2) - (h+1) = h + 3
+    - As we can see here, each node added to the tree results in the number of external path length increase 2 more than the
+internal path length
+    - With one node internal path length is 0 and external path length is 2 => difference is 2 x 1
+    - Insert one more node, and internal path length's increase is 2 more than external path length => difference is now 2 x 2
+    => with N nodes, difference between internal path length and external path length will be 2 x N

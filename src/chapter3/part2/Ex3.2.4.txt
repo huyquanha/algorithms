@@ -1,0 +1,5 @@
+=> a is ok
+=> b not ok because 7 < 53
+=> c is ok
+=> d is not ok because after you reach 3 (which is to the left of 7), you cannot go to 8 (which is to the right of 7)
+=> e is ok

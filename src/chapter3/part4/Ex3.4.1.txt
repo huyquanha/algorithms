@@ -1,0 +1,20 @@
+E A S Y Q U T I O N
+
+A (k=1) => hash(A) = 11 % 5 = 1
+E (k=5) => hash(E) = 0
+I (k=9) => hash(I) = 4
+N (k=14) => hash(N) = 4
+O (k=15) => hash(O) = 0
+Q (k=17) => hash(Q) = 2
+S (k=19) => hash(S) = 4
+T (k=20) => hash(T) = 0
+U (k=21) => hash(U) = 1
+Y (k=25) => hash(Y) = 0
+
+HashTable using Separate Chaining (note that insertion is done at the head of each linked list, not tail)
+
+0   O T Y E
+1   U A
+2   Q
+3
+4   N I S

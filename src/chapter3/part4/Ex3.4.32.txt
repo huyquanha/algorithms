@@ -1,0 +1,28 @@
+hash(Aa) = ((0 * 31 + 65) * 31) + 97 = 65 * 31 + 65 + 32 = 65 * 32 + 32 = 66 * 32
+hash(BB) = ((0 * 31 + 66) * 31) + 66 = 66 * 31 + 66 = 66 * 32
+
+=> Aa is obviously equal to BB. Nevertheless, Bb and CC are also equal, and so does Cc and DD,...
+The reason is because each lowercase and uppercase character's difference in code point is 32
+
+=> hash(Aa) = 'A' * 31 + 'A' + 32 = 'A' * 32 + 32 = ('A' + 1) * 32 = 'B' * 32 = 'B' * 31 + B = hash(BB)
+
+For N = 2, we need to find 4 strings of length 4 that hash to the same value.
+This is very trivial once we find the 2 strings of length 2 that hash to the same value (Aa and BB for example):
+
+We just pick AaAa, AaBB, BBAa, BBBB. To prove this, let's call H = hash(Aa) = hash(BB)
+hash(AaAa) = (H * 31 + 'A') * 31 + 'a' = H * 31 * 31 + 'A' * 31 + 'a' = H * 31 * 31 + H
+hash(AaBB) = (H * 31 + 'B') * 31 + 'B' = H * 31 * 31 + 'B' * 31 + 'B' = H * 31 * 31 + H
+
+If we get rid of the common part H * 31^2, we got left:  ('A' * 31 + 'a') and ('B' * 31 + 'B'), which we already proved to be equal.
+Same proof can be used for AaAa and BBAa, ... and so on
+
+For N = 3, we need to find 8 strings of length 8 that hash to the same value
+Follow the same pattern, we can easily construct 8 strings by alternating between Aa and BB for each 2-letter tuple.
+If we call hash(Aa) = hash(BB) = H we have hash(AaAa) = hash(BBBB) = ... = H * 31 ^ 2 + H
+for example: hash(AaAaAaBB) = ((((H * 31^2 + H) * 31 + 'A') * 31 + 'a') * 31 + 'B') * 31 + 'B'
+                            = ((H * 31^4 + H * 31^2 + H) * 31 + 'B') * 31 + 'B'
+                             = H * 31^6 + H * 31 ^ 4 + H * 31^2 + H
+
+ ...
+
+

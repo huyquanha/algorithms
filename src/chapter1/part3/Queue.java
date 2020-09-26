@@ -4,8 +4,8 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class Queue<Item> implements Iterable<Item> {
-    private class Node {
-        Item item;
+    private static class Node<I> {
+        I item;
         Node next;
     }
 
@@ -23,7 +23,7 @@ public class Queue<Item> implements Iterable<Item> {
         }
     }
 
-    private Node first, last;
+    private Node<Item> first, last;
     private int N;
 
     public boolean isEmpty() {
@@ -48,7 +48,7 @@ public class Queue<Item> implements Iterable<Item> {
 
     public void enqueue(Item item) {
         Node oldLast = last;
-        last = new Node();
+        last = new Node<>();
         last.item = item;
         if (isEmpty()) {
             first = last;
@@ -72,8 +72,12 @@ public class Queue<Item> implements Iterable<Item> {
         return new ListIterator();
     }
 
+    /**
+     * ListIterator needs to be non-static because it accesses the "first" instance variable
+     * from the enclosing Queue instance.
+     */
     private class ListIterator implements Iterator<Item> {
-        private Node itr = first;
+        private Node<Item> itr = first;
 
         public boolean hasNext() {
             return itr != null;

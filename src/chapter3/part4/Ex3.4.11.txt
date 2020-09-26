@@ -1,0 +1,36 @@
+E (5)
+A (1)
+S (19)
+Y (25)
+Q (17)
+U (21)
+T (20)
+I (9)
+O (15)
+N (14)
+
+- M = 4. The size of the table will double whenver N >= M/2 (when the table is half full)
+hash(E) = 3
+hash(A) = 3 but E there => 0
+0 1 2 3
+A     E
+
+N = 2 = M/2 => double => M = 8 Need to rehash into the new table
+hash(E) = 7
+hash(A) = 3
+hash(S) = 1
+hash(Y) = 3 but A there => Y to 4
+0 1 2 3 4 5 6 7
+  S   A Y     E
+
+N = 4 = M/2 => double => M = 16. Rehash into the new table
+hash(Q) = 11 but A there => Q to 12
+hash(U) = 7 but E there => U to 8
+hash(T) = 12 but Q there => T to 13
+hahs(I) = 3 but Y there => I to 4
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+  S   Y I     E U      A  Q  T
+
+N = 8 = M/2 => double => M = 32. Rehash into the new table
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31
+      I   O   U        A                 S     Y           E        N  Q  T

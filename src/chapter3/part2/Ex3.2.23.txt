@@ -1,0 +1,29 @@
+    x
+   / \
+  A   B
+     /
+    y
+     \
+      C
+
+Let's assume y = min(B)
+
+- Delete x, then y
+    - Delete x
+        - t = x
+        - x = min(B) = y
+        - x.right = deleteMin(B)
+        - x.left = t.left
+                    y
+                   / \
+                  A   B
+                     /
+                    C
+
+    - Delete y
+         - t = y
+         - y = min(B) = min(C) = z
+         - y.right = deleteMin(B)
+         - y left = A
+
+- Delete y, then x

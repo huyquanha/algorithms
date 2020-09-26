@@ -1,0 +1,27 @@
+The earlier verion of Java's hashCode for String skips every length()/8 characters, or go through every character
+if the length of string < 8
+
+For example, if length() = 16, skip = length()/8 = 2 => the hash is only computed on the 0, 2, 4, 6, 8,...,14th
+characters of the string
+
+The longer the string, the more characters of the string being skipped. I believe the main reason for this choice
+is to keep the hash computation efficient by not computing the hash over every character in the string, which can
+be time-consuming for long strings.
+
+However, it turns out from the previous exercise, there's a considerable amount of permutations
+of characters that hash to the same value. By only taking into account certain characters in the string,
+instead of every character contributing to the hash, you actually increase the chance of collision (multiple
+string hashes to the same value if they have the "hash attack" sequence at the indices that participate in the hash
+computation)
+
+For example, if the multiplier is 31, a string AsamBoB.... (length = 16) and BuBrAla(length = 16) actually hashes
+to the same value, because the sequence A,a,B,B and B,B,A,a that participate in the hash produce the same hash value.
+With the multiplier being 37, we can just tweak the sequence a bit and we have another sequence with the same effect.
+
+However, these above 2 strings won't hash to the same value if we take into account all characters
+because the more letters being hashed, the less likely they form a hash attack sequence.
+So by saving some time hashing the string, the designer might risk
+having a hash table with lots of collisions.
+
+Also, because String is immutable, the hash can be computed only once and cached for future uses,
+so that initial cost is worth nothing compared to the gain in collision resolution.

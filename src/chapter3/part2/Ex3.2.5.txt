@@ -1,0 +1,3 @@
+For search keys that are more frequently accessed, we want them to be near the root of the tree,
+so it takes less compares to get to the key. Therefore, we will insert them in decreasing order
+of likely frequency of access, so the most frequently accessed keys end up at the top of the tree

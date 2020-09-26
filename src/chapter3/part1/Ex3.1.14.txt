@@ -1,0 +1,7 @@
+BinarySearchST is very slow when there's a lot of put() operations, because in case of a search miss,
+the whole array after the intended position needs to be moved up to spare a space for the new insertion
+=> 2N array accesses for each insertion in the worst case, wherease it is only N for SequentialSearchST
+
+the get operation is N/2 on average for SequentialSearch and lgN for BinarySearch.
+
+this is hard to call, but SequentialSearch may have an edge here.

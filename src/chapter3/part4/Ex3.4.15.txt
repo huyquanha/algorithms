@@ -1,0 +1,37 @@
+In the worst case, all keys hash to the same index
+Let's just say hypothetically in the very worst case that everytime the array is resized, every single key also hashes to the same index
+
+Starting with an empty initial table (M = 2)
+- First key: 0 compares
+- Second key: 1 compares
+- third key; 2 compares
+- ...
+- Nth key: N - 1 compares
+
+after inserting 1st key, n = 1, M = 2 => M is doubled. M = 4, 0 compares in resize() (because it's the first key)
+after inserting 2nd key, n = 2, M = 4 => M is doubled. M = 8, 0 + 1 compares in resize() (beause it's the first and second key now)
+after inserting 4th key, n = 4, M = 8 => M is doubled. M = 16, 0 + 1 + 2 + 3 compares in resize() (first, second, third, and fourth key now)
+after inserting 8th key, n = 8, M = 16 => M is doubled. M = 32, 0 + 1 + 2 + 3 + ... + 7 compares in resize()
+
+Let's just say N is a power of 2 for simplicity (N = 2^a)
+after inserting 2^(a-1) key, n = 2^(a-1), M = 2^a => M is doubled. M = 2^(a+1), 0 + 1 + 2 + ... + (2^(a-1) - 1) compares in resize()
+after inserting 2^a key, n = N = 2^a, M = 2^(a+1). This time no more keys are inserted so it won't double in size
+
+Overall the compares used for resize is:
+
+S = 0 + (0 + 1) + (0 + 1 + 2) + ...  + (0 + 1 + 2 + ... + (N/2 - 1))
+
+Let's assign x = N/2
+S = (1x2)/2 + (2x3)/2 + (3x4)/2 + ... + (x-1)x/2
+=> 2S = 1x2 + 2x3 + 3x4 + ... + (x-1)x
+=> 2S = (2-1)x2 + (3-1)x3 + (4-1)x4 + ... + (x-1)x
+=> 2S = (2^2 + 3^2 + 4 ^2 + ... + x^2) - (2 + 3 + 4 + ... + x)
+      =  (2x+1)x(x+1)/6 - 1 - (2 + 3 + 4 + ... + x)
+      = (2x+1)x(x+1)/6 - (1 + 2 + 3 + ... + x)
+      = (2x + 1)x(x +1)/6 - (x+1)x/2
+      = (x-1)x(x+1)/3 = ((N/2 - 1)(N/2)(N/2 + 1))/3
+
+
+Sum of the compares not involving in resize() is 1 + 2 + 3 + ... + (N-1) = N(N-1)/2
+
+=> the total sum of compares is N(N-1)/2 + ((N/2 - 1)(N/2)(N/2 + 1))/3

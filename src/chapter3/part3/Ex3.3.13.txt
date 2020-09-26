@@ -1,0 +1,3 @@
+- Monotonically increasing means increasing or staying constant
+
+True

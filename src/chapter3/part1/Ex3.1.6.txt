@@ -1,0 +1,6 @@
+The number of put() does not depend on the number of distinct keys because every word encountered
+need to be put(). It's just a matter of whether to put a new entry, or update the existing entry
+=> the number of put() is W. Don't forget that we have another put at the end for the max entry ("") => W + 1 put() in total
+
+The number of get(), on the other hand, depends on the number of distinct keys. The inner loop issues 2 calls
+to get, and it loops (D + 1) times (+1 for the max entry being inserted) => 2(D+1) + 1 (the last get() call to max) => 2D + 3 get() in total

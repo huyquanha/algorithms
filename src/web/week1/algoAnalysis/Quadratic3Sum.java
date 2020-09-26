@@ -1,4 +1,4 @@
-package chapter1.part4;
+package web.week1.algoAnalysis;
 
 /**
  * Web exercise

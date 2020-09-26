@@ -1,0 +1,32 @@
+A 2-node has one key k1 (and associated value) and 2 links (or children)
+    - left link < k1
+    - right link > k1
+
+
+A 3-node has 2 keys k1 and k2 (and associated values) and 3 links (or children)
+    - Left link < k1
+    - k1 < middle link < k2
+    - Right link > k2
+
+- A link to an empty tree is referred to as a null link
+
+A 2-3 tree always maintain perfect balance (the distance from every null link to the root is the same)
+
+Concept: grow the tree from the bottom up, not top down (BST approach)
+    - When inserting a new key in a 2-node (1 key), add the new key to that node => becomes 3-node (2 keys)
+    - When inserting a new key in a 3-node (2 keys already), make it a temporary 4-node (3 keys)
+        - Then bring the middle key up 1 level and transform the 4-node into 3 2-nodes.
+        - If the parent is 2-node, now it becomes 3-node
+        - If the parent is already 3-node, we repeat the same process all the way to the root if neccessary
+
+To make the implementation of 2-3 tree simpler, we use Red Black BST, which is a 1-1 correspondence to 2-3 trees
+    - We encode a 3-node by introducing a RED link between the 2 keys in the node. Normal links are BLACK
+    - The red link leans left, so it goes from the larger key to the smaller key (a is the left child of b)
+    - No node has 2 red links connected to it
+    - The tree has perfect black balance: every path from the root to a null link has the same number of black links
+
+    - From this 2-3 tree
+        a b                                      b
+       / | \      --------------->          /(red) \
+      <a    >b                             a         >b
+                                          / \

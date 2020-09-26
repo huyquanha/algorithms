@@ -1,0 +1,8 @@
+Cost of building a symbol of table of N distinct keys
+    - Inserting a new key into the a table of sie m uses ~2m array accesses in the worst case
+
+=> the worst case of building a table will be 2(1 + 2 + 3 + 4 + ... + N) ~ N^2
+
+Cost of each search operation is ~lgN
+
+=> the order of growth for S is N^2/lgN so the cost of all search operations equal the cost of building table

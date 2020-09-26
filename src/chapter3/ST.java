@@ -1,17 +1,25 @@
-package chapter3.part1;
+package chapter3;
 
 public interface ST<Key, Value> {
-    public void put(Key key, Value val);
+    void put(Key key, Value val);
 
-    public Value get(Key key);
+    Value get(Key key);
 
-    public void delete(Key key);
+    void delete(Key key);
 
-    public boolean contains(Key key);
+    default boolean contains(Key key) {
+        return get(key) != null;
+    }
 
-    public boolean isEmpty();
+    boolean isEmpty();
 
-    public int size();
+    int size();
 
-    public Iterable<Key> keys();
+    Iterable<Key> keys();
+
+    default void checkKey(Key key) {
+        if (key == null) {
+            throw new IllegalArgumentException("Key cannot be null");
+        }
+    }
 }

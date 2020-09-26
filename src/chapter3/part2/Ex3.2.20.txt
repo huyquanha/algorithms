@@ -1,0 +1,5 @@
+For each key in the BST that is in the range, we need one enqueue operation to put it in the queue
+For each key that we exmanine, if the left or right subtree has the potential of being in the range,
+we go down one level. In the worst case we go down h levels, with h being the tree height.
+
+=> the running time is at most proportional to the tree height plus the number of keys in the range

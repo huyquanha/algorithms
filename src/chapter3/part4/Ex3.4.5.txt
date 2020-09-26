@@ -1,0 +1,7 @@
+hashCode() must be consistent with equals()
+
+If a.equals(b) is true, a.hashCode() has to be equal to b.hashCode()
+
+With hashCode() always returning 17, this is legal. Note that a legal hashCode() implementation is different from
+an efficient one to use, because with this hasCode(), every single key will map to the same entry in hash table
+=> our symbol table reduces to a SequentialSearchST.

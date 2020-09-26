@@ -26,6 +26,15 @@ public class Heap {
         }
     }
 
+    /**
+     * Since a[] goes from 0 to N - 1, but for math simplicity, the heap notation
+     * goes from 1 to N, therefore i-th and j-th elements here corresponds to a[i -1] and a[j-1]
+     * in the actual array
+     * @param a
+     * @param i
+     * @param j
+     * @return
+     */
     private static boolean less(Comparable[] a, int i, int j) {
         return a[i - 1].compareTo(a[j - 1]) < 0;
     }

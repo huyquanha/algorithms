@@ -3,7 +3,17 @@ package chapter3.part3;
 import chapter1.part3.Queue;
 import chapter3.OrderedST;
 
-public class RedBlackBST<Key extends Comparable<Key>, Value> implements OrderedST<Key, Value> {
+import java.util.NoSuchElementException;
+
+/**
+ * Sedgewick's Left-Leaning Red-Black BST, which is to be distinguished from conventional Red-Black BST
+ * This implementation is supposed to be easier, less lines of code due to stricter invariant (red links can only lean left)
+ * However, this does lead to asymmetry of code to handle the left and right subtree. Particularly the delete implementation
+ * is a bit tricky (See javadoc for each method for implementation notes)
+ * @param <Key>
+ * @param <Value>
+ */
+public class LLRedBlackBST<Key extends Comparable<Key>, Value> implements OrderedST<Key, Value> {
     private static final boolean RED = true;
     private static final boolean BLACK = false;
 
@@ -187,35 +197,73 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> implements OrderedS
         return sz;
     }
 
+    /**
+     * INVARIANT APPLIED TO ALL DELETE METHODS BELOW:
+     * The current node OR
+     * - Its left child (if deleteMin()) cannot be a 2-node
+     * - Its right child (if deleteMax()) cannot be a 2-node
+     * - For delete(), it depends on which subtree you go down from the root to apply either deleteMin() or deleteMax() rule
+     *
+     * The reason for this invariant is to ensure the node we aim to delete do not end up to be a 2-node, because
+     * its deletion will cause the tree to become im-balanced. If the node is part of a 3-node or 4-node, deleting it is
+     * easy because the black length doesn't change.
+     */
+
+    /**
+     * Implementation Note
+     * - If the root is a 2-node (both the left and right child are BLACK), we need to turn its color to RED
+     * so it is part of an "imaginary" RED node. This is to meet the invariant defined above, and to make sure our implementation
+     * of flipColor() in moveRedLeft() behaves as expected at the root level
+     * - Technically speaking, the check for !isRed(root.right) is redundant because red links can only lean left. However,
+     * to make it really clear that root is a 2-node we add it in anyway
+     */
     public void deleteMin() {
-        if (isEmpty()) throw new UnsupportedOperationException();
+        if (isEmpty()) throw new NoSuchElementException("BST underflow");
         if (!isRed(root.left) && !isRed(root.right)) {
-            // this means root is a 2-node. We change root.color to RED, so we can use flipColors on it to turn it back to BLACK
             root.color = RED;
         }
         root = deleteMin(root);
-        // at the end, always turn root's color back to BLACK
+        // at the end, if the root is still there after deletion, we turn its color back to BLACK
         if (!isEmpty()) root.color = BLACK;
     }
 
+    /**
+     * Implementation Note
+     * - Recursively go down the left-subtree of the current node h UNLESS
+     *      - h.left is null, in which case because of the invariant, we can be sure that h is part of a 3-node or 4-node and just return null
+     *      to signify that we delete h
+     *      - else (h.left is not null), and h.left is BLACK and h.left.left is also BLACK, we would violate the invariant if we keep going
+     *      down to h.left. The reason is in the next recursion, the current node will become h.left, and its child will be h.left.left and they
+     *      are both BLACK => violation
+     *          - As a result, we need to use moveRedLeft to turn either h.left, or h.left.left to RED to meet the invariant
+     */
     private Node deleteMin(Node h) {
         if (h.left == null) {
-            // this means h is the smallest node in the tree already
-            // since the tree is black-balanced and no right-leaning red links => h.left == null means h.right == null => return null
             return null;
         }
-        // if we come here then h.left != null => don't need to worry about null pointer exception
         if (!isRed(h.left) && !isRed(h.left.left)) {
-            // if isRed(h.left), that means h and h.left forms a 3-node => that's okay
-            // if isRed(h.left) is not true, but isRed(h.left.left), that means h.left.left is present,
-            // => there's a node smaller than h, and h.left.left and h.left also forms a 3-node => that's okay too
-            // therefore, if both of these conditions fail, we need to make some changes
             h = moveRedLeft(h);
         }
         h.left = deleteMin(h.left);
         return balance(h);
     }
 
+    /**
+     * Implementation Note
+     * - There are 2 pre-requisites for this method to work correctly
+     *      - the current node h must be RED (1)
+     *      - Both h.left and h.left.left are BLACK (2)
+     * - We can assume these 2 pre-requisites are both met because
+     *      - (1) is enforced by the invariant that the current node must be RED
+     *      - (2) is enforced by the if condition in deleteMin()
+     *
+     * Implementation Trace
+     * - flipColors(h) to turn h to BLACK and h.left and h.right to RED
+     * - If h.right.left is also RED, we have 2 successive red links on the right subtree (h.right and h.right.left)
+     * - To minimize this successive red links, we do 2 more rotations and one more color flip
+     *   to make h.left.left RED instead of h.left so the invariant is still met
+     *
+     */
     private Node moveRedLeft(Node h) {
         // assume that h is RED and both h.left and h.left.left are BLACk, make h.left or
         // one of its children red
@@ -232,7 +280,7 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> implements OrderedS
     }
 
     public void deleteMax() {
-        if (isEmpty()) throw new UnsupportedOperationException();
+        if (isEmpty()) throw new NoSuchElementException("BST underflow");
         if (!isRed(root.left) && !isRed(root.right)) {
             root.color = RED;
         }
@@ -240,6 +288,19 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> implements OrderedS
         if (!isEmpty()) root.color = BLACK;
     }
 
+    /**
+     * Implementation Note
+     * - Because red links always lean left, h.right will always be BLACK
+     *      - To quickly meet the invariant, if h.left is RED, we can rotateRight() that red link to make h.right RED
+     *
+     * - Recursively go down the right-subtree of the current node h UNLESS
+     *      - h.right is null, in which case because of the invariant, we can be sure that h is part of a 3-node or 4-node and just return null
+     *      to signify that we delete h
+     *      - else (h.right is not null), and h.right is BLACK and h.right.left is also BLACK (not h.right.right because red links lean left)
+     *      we would violate the invariant if we keep going down to h.left. The reason is in the next recursion, the current node will become h.right (BLACK) and since h.right.left
+     *      is BLACK, we cannot rotate it over to make h.right.right RED => h.right.right remains BLACK => violation
+     *          - As a result, we need to use moveRedRight to turn either h.right, or h.right.right to RED to meet the invariant
+     */
     private Node deleteMax(Node h) {
         // we first check that if h.left is a red node, we can rotate it over to make
         // the next node on the right red, so it becomes part of 3 node
@@ -255,6 +316,21 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> implements OrderedS
         return balance(h);
     }
 
+    /**
+     * Implementation Note
+     * - There are 2 pre-requisites for this method to work correctly
+     *      - the current node h must be RED (1)
+     *      - Both h.right and h.right.left are BLACK (2)
+     * - We can assume these 2 pre-requisites are both met because
+     *      - (1) is enforced by the invariant that the current node must be RED
+     *      - (2) is enforced by the if condition in deleteMax()
+     *
+     * Implementation Trace
+     * - flipColors(h) to turn h to BLACK and h.left and h.right to RED
+     * - If h.left.left is also RED, we have 2 successive red links on the left subtree (h.left and h.left.left)
+     * - To minimize this successive red links, we do 1 more rotations and one more color flip
+     *   to make h.right.right RED instead of h.right so the invariant is still met
+     */
     private Node moveRedRight(Node h) {
         // assume h is RED and both h.right and h.right.left are BLACK, make h.right or one of its children RED
         flipColors(h); //make h BLACK and h.left and h.right RED
@@ -269,7 +345,9 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> implements OrderedS
     }
 
     public void delete(Key k) {
-        if (isEmpty()) throw new UnsupportedOperationException();
+        if (isEmpty()) throw new NoSuchElementException("BST underflow");
+        // we first check that k is in the tree
+        if (!contains(k)) return;
         if (!isRed(root.left) && !isRed(root.right)) {
             root.color = RED;
         }
@@ -277,6 +355,46 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> implements OrderedS
         if (!isEmpty()) root.color = BLACK;
     }
 
+    /**
+     * Implementation Note
+     * - A normal approach would be to alternate the flow between 3 cases:
+     *     - if k < h.k
+     *     - if k > h.k
+     *     - if k == h.k
+     * - However, an implementation twist here is to group the 2 latter cases into one, because
+     * they share some similar implementations
+     *      - if k > h.k, we want to borrow a red link from h.left if possible to maintain the invariant that the
+     *      current node is not a 2-node
+     *      - if k == h.k, 2 things could happen:
+     *          - h.right == null:
+     *              - h is at the bottom of the tree. You would think that means h.left is also null and
+     *              to delete h we can simply return null, but turns out this isn't always true.
+     *              - h.left can still link to just one more RED node (with both children null)
+     *              because red links don't count towards the black balance
+     *              - Therefore, to confidently return null when h.right == null, we rotate h.left over if it is RED. This would
+     *              make the target node h to be pushed to the right so we need one more recursive call, but at that time h.left
+     *              is guaranteed to be null (because h.left is the old right child of the rotated RED node) => return null is correct
+     *          - h.right != null:
+     *              - h is not at the bottom of the tree. To delete h, we replace its content with min(h.right), and then
+     *              call deleteMin(h.right)
+     *              - Since deleteMin(h.right) also needs to maintain the invariant that the current node is not a 2-node,
+     *              we should also rotate h.left over if it is RED with the aim of eventually turning h.right to a RED node
+     *      - From the analysis, it seems [if (isRed(h.left)) h = rotateRight(h)] is an operation not only
+     *      necessary for when k > h.k, but also when k == h.k. The operation replaces h with a smaller node (h.left)
+     *      so if k >= h.k, k will also >= h.left.k and we continue traversing the correct subtree (right in this case)
+     *      - Another point to note is a rotation changes the key value of h, so we should avoid storing k.compareTo(h.k)
+     *      to a local variable because it might not be true after rotations. We should make a fresh compare every time
+     *      - If [k.compareTo(h.k) == 0 && (h.right == null)] returns false, that means either k != h.k, or
+     *      h.right != null.
+     *          - If k != h.k, or more specifically, k > h.k, we need to do the moveRedRight() transformation
+     *          if necessary to maintain the invariant as in deleteMax(). We don't need to check if h.right is null
+     *          because contains(k) returns true, so the node with key value of k should be present in the tree =>
+     *          h.right should not be null so we can continue our traversal
+     *          - If k == h.k => h.right != null => the moveRedRight() transformation might also be necessary to
+     *          make h.right RED so we can call deleteMin() on it
+     *          - For these reasons, the conditional call to moveRedRight() is placed after
+     *          [k.compareTo(h.k) == 0 && (h.right == null)] check because it is not necessary unless the check returns false
+     */
     private Node delete(Node h, Key k) {
         if (k.compareTo(h.k) < 0) {
             if (!isRed(h.left) && !isRed(h.left.left)) {
@@ -284,21 +402,15 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> implements OrderedS
             }
             h.left = delete(h.left, k);
         } else {
-            // because all red links lean left, to make it appear on the right side,
-            // we have to call rotateRight as the first thing if h.left is RED
             if (isRed(h.left)) {
                 h = rotateRight(h);
             }
-            // we need to call compareTo() again because the previous call might alter which node h links to
-            // so we can't use cmp
             if (k.compareTo(h.k) == 0 && (h.right == null)) {
-                // this means h is at the bottom of the tree
                 return null;
             }
             if (!isRed(h.right) && !isRed(h.right.left)) {
                 h = moveRedRight(h);
             }
-            // same reason we need to call compareTo() again here as well
             if (k.compareTo(h.k) == 0) {
                 // h is somewhere in the middle of the tree. We exchange it with its successor x= min(h.right)
                 // by setting h.k and h.v to be k and v of x, and then deleteMin(h.right)
@@ -401,7 +513,7 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> implements OrderedS
 
     public static void main(String[] args) {
         int N = Integer.parseInt(args[0]);
-        RedBlackBST<Integer, Integer> bst = new RedBlackBST<>();
+        LLRedBlackBST<Integer, Integer> bst = new LLRedBlackBST<>();
         for (int i = 0; i < N; i++) {
             int k = (int) (Math.random() * N);
             bst.put(k, -k);

@@ -4,9 +4,29 @@ import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 
 public class Stack<Item> implements Iterable<Item> {
-    private class Node {
+    /**
+     * if you declare Node class as this:
+     *      private class Node {
+     *          Item item;
+     *          Node next;
+     *      }
+     * Item parameterized type is inherited from the enclosing Stack class, so even without Node being declared as as generic class
+     * (Node<Item>), the compiler can still understand what Item is referring to.
+     *
+     * However by Java recommendation, if a nested class doesn't need access to the enclosing instance's non-public
+     * fields/methods, it should be declared as a static nested class.
+     *
+     * Once you declare Node as static, the parameterized type inheritance feature is no longer available,
+     * so you need to declare Node as generic class.
+     *
+     * Note also that if you do this, Item type in Node refers to a completely different type from Item type of Stack,
+     * even though they use the same name.
+     *
+     * When you declare a reference to Node<Item> outside of Node class, the Item type is the Stack's Item type
+     */
+    private static class Node<Item> {
         Item item;
-        Node next;
+        Node<Item> next;
     }
 
     public Stack() {
@@ -27,7 +47,7 @@ public class Stack<Item> implements Iterable<Item> {
         }
     }
 
-    private Node first;
+    private Node<Item> first;
     private int N, pushPopCount;
 
     public boolean isEmpty() {
@@ -40,8 +60,8 @@ public class Stack<Item> implements Iterable<Item> {
     }
 
     public void push(Item item) {
-        Node oldFirst = first;
-        first = new Node();
+        Node<Item> oldFirst = first;
+        first = new Node<>();
         first.item = item;
         first.next = oldFirst; //correct even if first is initially null
         N++;
@@ -67,9 +87,13 @@ public class Stack<Item> implements Iterable<Item> {
         return new ListIterator();
     }
 
+    /**
+     * ListIterator needs to be non-static because it needs access to "first" instance variable
+     * from the enclosing Stack instance.
+     */
     //Exercise 1.3.50 - fail fast iterator
     private class ListIterator implements Iterator<Item> {
-        private Node itr;
+        private Node<Item> itr;
         private int ppCount;
 
         public ListIterator() {

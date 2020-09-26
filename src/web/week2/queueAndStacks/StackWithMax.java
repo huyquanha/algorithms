@@ -1,4 +1,4 @@
-package web.week2;
+package web.week2.queueAndStacks;
 
 import chapter1.part3.Stack;
 

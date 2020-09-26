@@ -1,23 +1,74 @@
-package chapter3.part1;
+package chapter3;
 
-public interface OrderedST<Key, Value> extends ST<Key, Value> {
-    public Key min();
+public interface OrderedST<Key extends Comparable<Key>, Value> extends ST<Key, Value> {
+    Key min();
 
-    public Key max();
+    Key max();
 
-    public Key floor(Key key);
+    /**
+     *
+     * @param key
+     * @return largest key less than or equal to key
+     */
+    Key floor(Key key);
 
-    public Key ceiling(Key key);
+    /**
+     *
+     * @param key
+     * @return smallest key larger than or equal to key
+     */
+    Key ceiling(Key key);
 
-    public int rank(Key key);
+    /**
+     *
+     * @param key
+     * @return number of keys less than key (equals index of key if key is in the table)
+     */
+    int rank(Key key);
 
-    public Key select(int k);
+    /**
+     *
+     * @param k
+     * @return key of rank k
+     */
+    Key select(int k);
 
-    public void deleteMin();
+    default void deleteMin() {
+        delete(min());
+    }
 
-    public void deleteMax();
+    default void deleteMax() {
+        delete(max());
+    }
 
-    public int size(Key lo, Key hi);
+    /**
+     *
+     * @param lo
+     * @param hi
+     * @return number of keys that is larger than or equal to lo, and smaller than or equal to hi
+     */
+    default int size(Key lo, Key hi) {
+        if (hi.compareTo(lo) < 0) {
+            return 0;
+        }
+        if (contains(hi)) {
+            // if hi is in the table => it is included
+            return rank(hi) - rank(lo) + 1;
+        } else {
+            // if hi is not in the table, it's not included
+            return rank(hi) - rank(lo);
+        }
+    }
 
-    public Iterable<Key> keys(Key lo, Key hi);
+    default Iterable<Key> keys() {
+        return keys(min(), max());
+    }
+
+    /**
+     *
+     * @param lo
+     * @param hi
+     * @return a list of keys larger than or equal to lo, and smaller than or equal to hi
+     */
+    Iterable<Key> keys(Key lo, Key hi);
 }

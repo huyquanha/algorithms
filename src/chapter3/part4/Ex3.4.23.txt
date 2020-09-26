@@ -1,0 +1,16 @@
+Modular hashing for String is
+
+int hash = 0;
+for (int i = 0; i < s.length(); i++) {
+    hash = (R * hash + s.charAt(i)) % M;
+}
+return hash;
+
+(R * hash) % M = ((R%M) * hash) % M
+
+if R = 256 and M = 255 => R % M = 1 => (R * hash) % M = hash % M
+
+=> hash = (R * hash + s.charAt(i)) % M <=> hash = (hash + s.charAt(i)) % M = (hash + s.charAt(i) % M) % M (because hash is always < M)
+
+=> With R = 256 and M = 255, it's basically just adding the modulo M of each individual character in the string together
+=> a permutation of characters of the string would produce exactly the same hash code => bad choice of R and M

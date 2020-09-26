@@ -1,0 +1,16 @@
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+P M     A C S H L   E            R X
+
+C deleted, S,H,L should be re-inserted so we leave no holes in the middle of a cluster
+
+S, hash = 6
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+P M     A   S H L   E            R X
+
+H, hash = 4 but A already there => 5
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+P M     A H S   L   E            R X
+
+L, hash = 6 but S already there => 7
+0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+P M     A H S L     E            R X

@@ -1,0 +1,17 @@
+N = 2^n - 1 => the tree has n levels
+The first level has 1 node only (the root)
+The 2nd level has 2 nodes, each has a path length of 1 to the root
+The 3rd level has 4 nodes, each has a path length of 2 to the root.
+
+=> P = Internal path length = 2 * 1 + 4 * 2 + 8 * 3 + ... + 2^(n-1) * (n-1)
+                        = 2^1 * 1 + 2^2 * 2 + 2^3 * 3 + ... + 2^(n-1) * (n-1)
+
+ S1 = (2^1 + 2^2 + 2^3 + ... + 2^(n-1)) = 2^n - 2^1
+ S2 = (2^2 + 2^3 + ... + 2^(n-1)) = 2^n - 2^2
+ S3 = (2^3 + ... + 2^(n-1)) = 2^n - 2^3
+ ...
+ S(n-1) = 2^(n-1) = 2^n - 2^(n-1)
+
+ P = S1 + S2 + S3 + ... + S(n-1) = (n-1)*2^n - (2^1 + 2^2 + 2^3 + ... + 2^(n-1))
+                                 = (n-1)*2^n - (2^n - 2)
+                                 = (n-2)*2^n + 2 with n = log(N+1)

@@ -1,0 +1,20 @@
+Let's choose a random bit n (0 <= n <= t-1)
+
+If bit n is off (0), the value of the integer is a
+If bit n is on (1), the value of the integer is b and b = a + 2^n
+
+a % M = x
+b % M = y
+
+Hypothetically, let's say what we are trying to prove is wrong: there doesn't exist 2 keys
+differing only in bit n that have different hash values
+<=> it is equivalent to x == y
+<=>  (b - a) % M = 0
+<=> 2^n % M = 0
+
+This is impossible because M is prime (unless M = 2) so it doesn't share any factors with 2^n
+=> x != y
+
+So there does exist 2 keys differing only in that bit n that hash to different hash values. This is
+part of the reason why we choose M to be prime, so that even 2 keys that is only slightly different
+from each other (1 bit difference) can still hash to 2 totally different hash values

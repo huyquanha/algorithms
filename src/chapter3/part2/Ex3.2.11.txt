@@ -1,0 +1,22 @@
+say N = 1, there's one shape with height = 1 = 2 ^ (1 - 1)
+N = 2, there's 2 shapes with height = 2 = 2 ^ (2 - 1)
+ k1          k1
+  \          /
+   k2       k2
+
+
+N = 3:
+   k1            k1             k1           k1
+    \             \            /            /
+     k2           k2          k2           k2
+      \           /           /             \
+       k3        k3          k3              k3
+- Afer the first key k1 is inserted, k2 can either be to the left or right of k1 => 2 cases
+- After k2 is inserted, k3 also can either be to the left or right of k2 (note that k3 cannot be sibling of k2, otherwise
+the tree's height can't be N = 3) => 2 * 2 = 4 cases => 4 shapes = 2 ^ (3 -1)
+
+N = 4
+- Same concept, we will have 2^(4 - 1) = 8 different shapes that result in height N = 4
+
+Overall, there will be 2^(N-1) binary tree shapes of N nodes with height N
+

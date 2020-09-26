@@ -1,0 +1,36 @@
+Version 0: Try every floor from 1 to T. The egg will break at floor T and we have used T tosses
+
+Version 1: Binary search. Try floor n/2
+    - If the egg breaks T <= n/2
+    - If the egg doesn't break T > n/2
+    - At the end we will break ~lg n eggs and use ~lg n tosses
+
+Version 2
+- Without loss of generality, Let's assume 2^a < T < 2^(a + 1) => a < lgT < a + 1
+- We will toss the first egg at floor 2 (2^1), then 4 (2^2), then 8 (2^3)...then floor 2^a, then floor 2^(a+1)
+- The egg will definitely break at floor 2^(a+1), because T < 2^(a+1)
+- By this time we have used (a + 1) tosses, and breaks 1 egg => we have t = 2lgT - (a+1) tosses and e=lgT - 1 eggs left.
+a < lgT < a + 1 => 2a < 2lgT < 2(a+1) => a - 1 < t < a + 1 => t ~ lg T
+a < lgT < a + 1 => a - 1 < e < a => e ~ lg T
+- We also have narrowed the search from from [1,n] to [2^a + 1, 2^(a+1) - 1] => number of elements is 2^a - 1 < T
+
+Essentially, we come back to version 1, instead of lg n we now have lgT eggs and lgT tosses left, and we have about T floors to inspect
+
+Version 3
+- Let's say n = 64 => sqrt(n) = 8
+- We will toss the first egg at floor 8
+    - If it breaks, then T <= 8. We try every floor from 1 to 7 and the first floor that breaks is T. Worst case is floor 7 and we use
+    8 tosses
+    - If it doesn't break, then try floor 16. If it breaks, we follow the same process
+    - Worst case is the egg breaks at floor 64 => we have consumed 8 tosses, and then we have to try every floor from 57 to 63 =>
+    worst case is 7 + 8 = 15 tosses => we are still within limit of 2*sqrt(n) tosses
+
+Version 4
+- We know that 1 + 2 + 3 + .. + k ~ 1/2 * k^2
+- We will throw the first egg like this: floor 1, then floor 1 + 2 = 3, then floor 1 + 2 + 3 = 6,...
+- Let's say T is between 1 + 2 + 3 + ... + k - 1 and 1 + 2 + 3 + ... + k => 1/2 * (k-1) ^ 2 < T < 1/2 * k^2
+- By this time we have used k tosses and broke 1 egg
+- We have to try k-1 floors left sequentially => worst case is 2k-1 tosses
+- (k-1) ^ 2 < 2T < k^2
+=> k -1 < sqrt(2) * sqrt(T) < k
+=> 2k - 1 ~ 2sqrt(2) * sqrt(T)

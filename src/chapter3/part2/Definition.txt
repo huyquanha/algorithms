@@ -1,0 +1,29 @@
+- A node with no child is called 'leaf node' or 'external node'
+- A non-leaf node (that has either one or both child nodes being non-null) is an 'internal node'
+
+- Internal path length of the tree is henced defined as the total path lengths of all the internal nodes to the root
+- External path length of the tree is defined as the total path lengths of all external nodes to the root
+
+However, in the textbook, the "internal path length" is defined as the total path lengths of all nodes (including
+leaf nodes) to the root. The "external path length", as a consequence, is defined as the total path lengths of all the
+null links (children of leaf nodes) to the root.
+
+- In-order traversal
+    - Traverse the left subtree, call Inorder(left-subtree)
+    - Visit the root
+    - Traverse the right subtree, call Inorder(right-subtree)
+    - Special: if the tree is a Binary Search Tree (BST), the nodes will be printed out in sorted order when doing this traversal
+
+- Preorder traversal
+    - Visit the root
+    - Traverse the left subtree, call Preorder(left-subtree)
+    - Traverse the right subtree, call Preorder(right-subtree)
+
+- Postorder traversal
+    - Traverse the left subtree, call Postorder(left-subtree)
+    - Traverse the right subtree, call Postorder(right-subtree)
+    - Visit the root
+
+
+- Predecessor (in context of in-order traversal): The node immediately before a node when doing in-order traversal
+- Successor (in context of in-order traversal): The node immediately after a node when doing in-order traversal

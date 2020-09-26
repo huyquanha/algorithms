@@ -1,0 +1,10 @@
+a) With all keys hashing to the same index, they will form a continuous cluster of keys starting from that index onwards (might even wrap around),
+with no null holes in between => expected linear running time to go through all the keys and compare with the input key
+
+b) With each key hashing to a different indices, the running time is O(1), because a search hit means the input key is in the table,
+and hashing the input key will give the exact index as where the key is in the table, without any additional probe, because the hash
+doesn't collide with any other keys
+
+c) This is exactly the same as a. The even doens't change anything
+
+d) a Search hit would still find the key in O(1) (first probe) because all keys hash to different values

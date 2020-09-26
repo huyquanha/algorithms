@@ -1,0 +1,34 @@
+Note that even though the keys are double, they need to be wrapped inside a Double object to be used
+with generic classes. Double object uses 16 bytes object overhead, 8 bytes double instance variable => 24 bytes in total
+
+Note that here we don't count the actual memory for Key and Value, just references to them
+
+- Separate Chaining:
+    - Separate Chaining making use of SequentialSearchST
+        - 4 bytes each for N and M
+        - an array of M SequentialSearchST
+            - 24 bytes array overhead (16 bytes object overhead, 4 bytes length and 4 bytes padding)
+            - 8M bytes for references to M SequentialSearchST
+            - Each SequentialSearchST uses:
+                - 16 bytes object overhead
+                - 8 bytes reference for "first"
+                - 4 bytes for the size N of each SequentialSearchST
+                - 4 bytes padding
+            - Besides we have N Node objects, each with 24 bytes object overhead (16 normal overhead + 8 bytes
+            to refer to the enclosing instance), and 8 bytes references each to Key, Value and next => 48N in total
+        - Overall, memory usage is 8 + 24 + 40M + 48N = 32 + 40M + 48N
+
+- Linear Probing
+    - 4 bytes each for N and M
+    - 2 arrays of keys and values
+        - 24 bytes array overhead for each
+        - Size of each array is M, and with array resizing being a necessary component of Linear Probing,
+        M is predictable. It is between 2N and 8N => each uses between 16N bytes and 64N bytes references
+    => 8 + 2 * (24 + [16N...64N]) => between ~32N and 128N
+
+- BST
+    - 8 bytes reference to "root"
+    - Each Node uses 24 bytes object overhead, 8 bytes reference each for Key, value, left and right
+    (should be 4 bytes more if we want to keep track of the size, and 1 bytes more for color in RedBlackBST, but here we ignore them)
+    => 56 bytes for each Node
+    => ~ 56N

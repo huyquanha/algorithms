@@ -1,0 +1,8 @@
+When we insert keys in decreasing order, the next key is always smaller than all previous keys
+=> will be inserted to the left bottom as a left-leaning red link
+
+We will switch between
+- doing nothing
+- have double left-leaning red links and have to do a rotateRight() followed by flipColors() to pass
+the red link to the parent
+- At the parent, we might not need to do anything, or again, have to rotateRight() followed by flipColors().

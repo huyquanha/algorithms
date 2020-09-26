@@ -1,0 +1,37 @@
+An AVL tree property is height(rightSubtree) - height(leftSubtree) in {-1, 0, 1} for every node
+
+- Let's look at the root
+    - Let's call height of left subtree hl, height of right subtree hr
+    - h(root) = h = max(hl, hr) + 1
+    - if h % 2 == 0 (even)
+        - Since this is AVL tree, there can only be 3 scenarios that happen:
+            - hl - hr = 0 or hl = hr => hl and hr both odd => red links from root to both left and right subtree.
+            If we look at this from a bottom-up perspective, we could say that the number of black links from the leaf
+            nodes rooted at l and r both decrease by 1
+            - hl - hr = 1 => hl odd (hl = h - 1) and hr even (hr = h - 2) => red link from root to left subtree only.
+            This red link decrease the the number of black links for all leaf nodes rooted at l by 1
+            - On the other hand if hr - hl = 1, the red link goes from root to right subtree. The read link decreases
+            the number of black links for all leaf nodes rooted at r by 1
+            - In summary, if h is even, the higher subtree (the odd one) is given a red link, which decreases the number
+            of black links for leaf nodes rooted at that subtree by 1. On the next iteration, the even subtree will be decreased
+            by 1 whereas the odd subtree's black links stay the same => the number of black links are decreased similarly
+            for even-height root.
+
+    - if h % 2 == 1 (odd)
+        - No decrease in the number of black links, because we don't color links from odd-height nodes red
+        - If there's a difference in height for subtrees, the higher one's black links (the even one because h is odd => h -1 even)
+        is guanranteed to be decrease by 1 in the next iteration.
+        - If no difference => both are even => both will be decreased by 1
+        - No matter the difference, the number of black links are decreased similarly for both left and right subtrees
+        for odd-height root.
+
+As we traverse through the tree, when we encounter a even-height node, we color the link from it to the odd-height
+child so as to decrease its black link by 1, and the even one will be decreased by 1 in the next iteration whereas
+the odd one stay the same
+
+If we encounter a odd-height node, we don't color red link so the black link number doesn't change, but the higher subtree
+(the even one) is guanranteed to be decrease by 1 in the next iteration => so even if we do nothing it still balances out
+
+As a result by applying this coloring red links from even-height to odd-height nodes only, we guarantee to produce a perfectly
+balanced 2-3-4 trees (because the number of black links from every leaf node to the root decrease similarly as we go down the tree,
+so they must all be the same for every leaf node).

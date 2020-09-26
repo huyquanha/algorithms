@@ -1,3 +1,5 @@
+package web.week2.queueAndStacks;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 

@@ -1,3 +1,5 @@
+package web.week2.queueAndStacks;
+
 import edu.princeton.cs.algs4.StdIn;
 
 public class Permutation {

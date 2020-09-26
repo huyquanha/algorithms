@@ -1,0 +1,38 @@
+We also just need one bit per node to represent 5-, 6-, 7- or 8- node
+Note that the double link (//) represents RED color, single link represents BLACK
+
+For each of the below, consider all the * as belonging to a single 5-, 6-, 7-, or 8- node
+
++) 5-node
+         *
+       // \\
+      *     *
+     //\   /  \
+    *
+   / \
+
++) 6-node
+         *
+       //  \\
+      *      *
+     //\\   /  \
+    *   *
+   / \  /\
+
+
++) 7-node
+         *
+       //  \\
+      *      *
+     //\\   // \
+    *   *   *
+   / \  /\  /\
+
++) 8-node
+         *
+       //  \\
+      *       *
+     //\\   // \\
+    *   *   *   *
+   / \  /\  /\  /\
+

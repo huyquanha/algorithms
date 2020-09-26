@@ -1,0 +1,3 @@
+This is unlikely to help because we make M prime so it doesn't share a common factor
+with the key. Multiplying the key with another prime doesn't change the factors the kay has
+and thus doesn't allow us to choose a non-prime M

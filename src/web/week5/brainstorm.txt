@@ -1,0 +1,23 @@
+Line Segment Intersection
+- You are given a collection of line segments that aligns to the axes
+    - Validation
+        - Check that either endPoint1_x = endPoint2_x or endPoint1_y = endPoint2_y
+- To make the problem easier, the assumption is all the x's and y's are distinct
+    - Validation
+        - Let's just build it and see if the assumption is false, will it break the program
+
+- We then create events based on the endpoints
+    - A horizontal line will have 2 events, H_START and H_END
+    - A vertical line will have 1 event only V_RANGE
+    - Each event will have a x coordinate, y coordinate (2 of them for V_RANGE), and the type
+    - We sort the event in ascending order by x
+    - Or, we go through each line, and add all the events associated with it to a Min Priority Queue
+
+- For each event
+    - We look at the type of event
+        - if H_START, we insert the y coordinate to the tree
+        - if H_END, we get the y coordinate, find it in the tree and remove it
+        - if V_RANGE, we do a range search/range count on the tree
+
+- Repeat until the event list is exhausted. We will get either the total intersection count,
+or a list of intersection (signify by a Point x, y).

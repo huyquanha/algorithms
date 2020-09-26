@@ -1,0 +1,13 @@
+In in-order traversal, the successor of a node is the node immediately follow the current node (or the next-bigger node)
+    - Since the current node has 2 children, we can represent it like this
+
+          X (current node)
+        /   \
+       A     B (A,B are not single node, but representing subtrees)
+
+- Successor > X and B is present => X's successor, called S, must be min(B) (the smallest node in subtree B).
+=> as a result, S cannot have a left child, otherwise that left child will be min(B), not S
+
+- Predecessor < X and A is present => X's predecessor, called P, must be max(A) (the largest node in subtree A)
+=> as a result, P cannot have a right child, otherwise that right child will be max(A), not P
+

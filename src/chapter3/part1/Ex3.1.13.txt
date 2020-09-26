@@ -1,0 +1,2 @@
+BinarySearchST because the number of get() operations() is much bigger than the number of put() operations
+=> BinarySearchST with a ~lgN search will trump SequentialSearchST.

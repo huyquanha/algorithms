@@ -1,0 +1,53 @@
+- 64 bit architectures (memory usage are typically padded to be a multiple of 8 bytes)
+    - int: 4 bytes
+    - char: 2 bytes
+    - double/long: 8 bytes
+    - boolean: 1 byte
+    - machine address (reference): 8 bytes
+    - Object
+        - memory used by each instance variable
+            - If the instance variable is a reference to another object (for example String), we typically count it as 8 bytes
+            (memory for the reference), but don't count the memory usage of the String object itself
+        - object overhead: 16 bytes (reference to object's class + garbage collection information + synchronization information)
+    - Integer Object: 24 bytes
+        - 16 bytes object overhead
+        - 4 bytes for int instance variable
+        - 4 bytes of padding
+    - Nested non-static (inner) class instance (Ex: a Node instance inside a Stack/Queue instance)
+        - extra 8 bytes of overhead (reference to the enclosing instance)
+        - Node Object: 40 bytes
+            - 16 bytes normal object overhead
+            - 8 bytes extra overhead to the enclosing instance (Stack/Queue instance)
+            - 8 bytes for a reference to Item object
+            - 8 bytes for a reference to the next Node Object
+    - Linked List of N Nodes of Integer (inside a Stack): 64N
+        - 64 bytes for each entry (40 for Node and 24 for Integer)
+        - N entries => 64N
+    - Array:
+        - Of primitive type values:
+            - 24 bytes header information (16 bytes object overhead + 4 bytes for the length + 4 bytes padding)
+            - memory needed to store the primitive values
+            - Ex: array of N int values uses 24 + 4N bytes
+        - Of objects:
+            - an array of references to objects
+            - Ex: array of N Integer objects use 24 + 32N bytes (24 header bytes, 8N bytes for references to the
+            Integers, and 24N for the Integer themselves)
+    - 2D Array (MxN)
+        - array of arrays (each array is an object)
+        - 24 bytes header information for the array of arrays
+        - 8M bytes for references to the M row arrays
+        - 24M bytes for the header information of M row arrays
+        - MxN of
+            - memory for primitive values (ex: for double it is 8xMxN)
+            - 8 bytes reference + memory for the objects itself (ex: for Integer it is 32xMxN)
+    - String: 40 bytes
+        - 4 instance variables
+            - reference to a char array (8 bytes)
+            - three int values (4 bytes each)
+                - offset into the char array
+                - count (string length)
+                - hash code
+        - 16 bytes object overhead
+        - 4 bytes padding
+        - We don't count the spaces required for the character themselves because the char array is often shared
+        among strings.

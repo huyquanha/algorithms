@@ -1,0 +1,6 @@
+For a linear probing table that is half full and occupied positions chosen at random,
+each position hence has a 1/2 chance of being occupied
+
+Every 100 positions we have one that is divisible by 100 => we have 10^6/100 = 10^4 such positions
+
+The probability of each being occupied is 1/2 => the probability of all being occupied is (1/2)^(10^4) (extremely small)

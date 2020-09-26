@@ -1,0 +1,19 @@
+- BinarySearchST (N key-value pairs, between 25 and 100 percent full => allocated array size is bewtween N and 4N)
+    - 16 bytes object overhead
+    - 4 bytes for int instance variable (N)
+    - 24 + 8N to 24 + 32N (for array size from N to 4N) x 2 => 48 + 16N to 48 + 64N
+    - 4 byes padding
+    - Overall, the size is 72 + 16N to 72 + 64N
+- SequentialSearchST (N nodes)
+    - 16 bytes object overhead
+    - 4 bytes int instance variable (N)
+    - 8 bytes for the first Node reference variable (first)
+    - Each Node object:
+        - 8 byte reference to Key
+        - 8 byte reference to Value
+        - 8 byte reference to next Node
+        - 16 bytes object overhead
+        - 8 bytes extra overhead to the enclosing instance
+        - Overall: 48 bytes
+    - 4 bytes padding
+    - Overall: 32 + 48N bytes

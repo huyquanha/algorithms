@@ -1,0 +1,6 @@
+Since the numbers are >=0 and < 1000 => range is [0...999] => 1000 distinct integers at max
+if N = 10, 10 < 1000 => max number of distinct keys is 10, min is 1 => average is 5.5
+if N = 100, => max = 100, min = 1 => average = 50.5
+N = 1000 => max distinct = 1000, min = 1 => average is 500.5
+For N > 1000 (10^4, 10^5, 10^6) the average number of distinct is still 500.5 because you can't have
+more than 1000 different integers between 0 and 1000

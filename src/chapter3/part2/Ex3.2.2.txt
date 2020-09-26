@@ -1,0 +1,64 @@
+- A X C S E R H
+    A
+      \
+        X
+       /
+      C
+       \
+        S
+       /
+      E
+       \
+        R
+       /
+      H
+
+- A C E H R S X (increasing order)
+    A
+     \
+      C
+       \
+        E
+         \
+          H
+           \
+            R
+             \
+              S
+               \
+                X
+
+- A C E H R X S
+    A
+     \
+      C
+       \
+        E
+         \
+          H
+           \
+            R
+             \
+              X
+             /
+            S
+
+- X S R H E C A (decreasing order)
+
+- A C X S R H E
+     A
+      \
+       C
+        \
+         X
+        /
+       S
+      /
+     R
+    /
+   H
+  /
+ E
+
+...
+

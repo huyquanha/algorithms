@@ -1,0 +1,8 @@
+When you insert keys in order, you will continously introduce right-leaning red links, because
+the next key is larger than all the previous keys so it will be inserted at the right bottom
+
+When we balance this tree, we will see ourselves doing a rotateLeft() operation to left-lean
+the right-leaning red link. After that, we will see ourselves doing a flipColors() operation (because
+the right link (new) is red and the old left link is also left) => pass the red link up to the parent
+
+At the parent, we continue doing rotateLeft() and flipColors() and pass the red link up.

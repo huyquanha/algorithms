@@ -1,0 +1,133 @@
+Insert order: E A S Y Q U E S T I O N
+
+    E
+ /      \
+A        S
+      /     \
+     Q       Y
+    /        /
+   I       U
+   \      /
+    O    T
+   /
+  N
+
+- delete E
+    - compare E with root => equal => E is to be removed
+    - smallest element on the right subtree of E is I
+    - set t point to E, and x point to I
+    - x.right point to right subtree after deleting I
+                      S
+                     /
+                    Q
+                   /
+                  O
+                 /
+                N
+     - x.left point to the old left subtree (t.left)
+=> result tree
+                   I
+                /      \
+               A        S
+                     /     \
+                    Q       Y
+                   /        /
+                  O        U
+                 /       /
+                N       T
+
+- delete A
+    - compare A with I, A < I => go left
+    - A == A => A to be removed.
+    - since A.right == null, set the result to A.left (which is also null in this case)
+=> result tree
+                    I
+                      \
+                        S
+                     /     \
+                    Q       Y
+                   /        /
+                  O        U
+                 /       /
+                N       T
+
+- delete S
+    - S > I => go right
+    - S == S. S.left != null && S.right != null => find smallest element on right subtree => T
+    - Set t point to S, and x point to T
+    - x.right point to right subtree after deleting T
+                                Y
+                               /
+                              U
+    - x.left point to original left subtree
+=> result tree
+                      I
+                        \
+                          T
+                       /     \
+                      Q       Y
+                     /        /
+                    O        U
+                   /
+                  N
+
+- delete Y
+   - I < Y
+   - T < Y
+   - Y == Y. Y.right == null => return Y.left
+                              I
+                               \
+                                 T
+                              /     \
+                             Q       U
+                            /
+                           O
+                          /
+                         N
+
+- delete Q
+                              I
+                               \
+                                 T
+                              /     \
+                            O        U
+                           /
+                          N
+
+- delete U
+                              I
+                               \
+                                 T
+                              /
+                            O
+                           /
+                          N
+
+- delete E (again)
+    - E < I => go left.
+    - I.left == null => return null => I.left still the same. Nothing happens when trying to delete a key that doesn't exist
+    in the first place
+
+- delete S (again)
+    - S > I => go right
+    - S < T => go left
+    - S > O => go right
+    - O.right = null => return null => O.right is still null
+
+- delete T
+        I
+         \
+          O
+           \
+            N
+
+- delete I
+        O
+         \
+          N
+
+- delete O
+        N
+
+- delete N
+=> empty

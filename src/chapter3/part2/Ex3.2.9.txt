@@ -1,0 +1,39 @@
+N = 2
+    k1
+      \
+       k2
+
+    k1
+   /
+  k2
+
+N = 3
+     k1
+      \
+       k2
+        \
+        k3
+
+      k1
+     /
+    k2
+   /
+  k3
+
+      k1
+       \
+        k2
+       /
+      k3
+
+     k1
+    /
+   k2
+    \
+     k3
+
+     k1
+    / \
+   k2  k3
+
+N = 4, 5 and 6 follows the same procedure

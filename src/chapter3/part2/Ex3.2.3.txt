@@ -1,0 +1,18 @@
+- A C E H R S X
+
+- H C S A E R X
+       H
+     /   \
+    C      S
+   /\      /\
+  A  E    R  X
+
+- H C S E A R X
+
+- H C S A E X R
+
+- H C S E A X R
+
+- H S C A E R X
+
+...
