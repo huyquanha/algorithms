@@ -1,0 +1,14 @@
+Since the graph is connected, each vertex in the graph will have degree >= 1 (if degree = 0, that vertex is not connected)
+
+There are 2 cases
+- if there exists a vertex v with degree = 1 in the graph
+    - Let's say it's connected to another vertex w
+    - Remove v and edge v-w can lead to one of these cases
+        - if degree(w) = 1 (meaning: the graph only has 2 vertices: v and w), removing v-w leaves w behind as the only vertex
+        left in the graph => the graph is still connected
+        - if degree(w) > 1, removing v-w turns degree(w) to be >= 1 => w is still connected to the rest of the graph => the graph
+        is still connected
+- if there doesn't exist a vertex v with degree = 1 in the graph => every vertex in the graph has degree >= 2
+    => there is definitely a cycle in the graph because if there is no cycle, there has to be at least a vertex with degree = 1
+    (the end of a path). Since there's no such vertex in this graph, cycles exist.
+    => we can always find a vertex in the cycle that removing it doesn't affect the connectivity of other vertices participating in the cycle

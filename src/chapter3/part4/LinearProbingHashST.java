@@ -7,6 +7,10 @@ public class LinearProbingHashST<Key, Value> {
     private Value[] vals;
     private int N, M;
 
+    public LinearProbingHashST() {
+        this(4);
+    }
+
     public LinearProbingHashST(int M) {
         keys = (Key[]) new Object[M];
         vals = (Value[]) new Object[M];

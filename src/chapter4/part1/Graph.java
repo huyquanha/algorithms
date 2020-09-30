@@ -2,6 +2,7 @@ package chapter4.part1;
 
 import chapter1.part3.Bag;
 import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdOut;
 
 public class Graph {
     private int v;
@@ -27,10 +28,60 @@ public class Graph {
         }
     }
 
+    /**
+     * Ex4.1.15
+     * @param in
+     */
+//    public Graph(In in) {
+//        this(in.readInt());
+//        in.readInt(); // we don't really need to read e in. It will be incremented by adding edges
+//        while (in.hasNextLine()) {
+//            String[] vertices = in.readLine().split(" ");
+//            int v = Integer.parseInt(vertices[0]);
+//            for (int i = 1; i < vertices.length; i++) {
+//                addEdge(v, Integer.parseInt(vertices[i]));
+//            }
+//        }
+//    }
+
+    /**
+     * Ex 4.1.3
+     * @param g
+     */
+    public Graph(Graph g) {
+        this(g.v());
+        for (int i = 0; i < v; i++) {
+            for (int w : g.adj(i)) {
+                addEdge(i, w);
+            }
+        }
+    }
+
+    /**
+     * Ex 4.1.5: add checks for self-loop and parallel edges
+     * @param v
+     * @param w
+     */
     public void addEdge(int v, int w) {
+        if (v == w) throw new IllegalArgumentException("No self-loop");
+        if (hasEdge(v, w)) throw new IllegalArgumentException("No parallel edges");
         adj[v].add(w);
         adj[w].add(v);
         e++;
+    }
+
+    /**
+     * Ex 4.1.4: add method to check if an edge already exists
+     * @param v
+     * @param w
+     * @return
+     */
+    public boolean hasEdge(int v, int w) {
+        if (v < 0 || v >= this.v || w < 0 || w >= this.v) return false;
+        for (int x : adj(v)) {
+            if (x == w) return true;
+        }
+        return false;
     }
 
     public int v() {
@@ -49,12 +100,17 @@ public class Graph {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(v + " vertices, " + e + " edges\n");
         for (int i = 0; i < v; i++) {
-            stringBuilder.append(v + ": ");
-            for (int w: adj(v)) {
+            stringBuilder.append(i + ": ");
+            for (int w: adj(i)) {
                 stringBuilder.append(w + " ");
             }
             stringBuilder.append("\n");
         }
         return stringBuilder.toString();
+    }
+
+    public static void main(String[] args) {
+        Graph g = new Graph(new In(args[0]));
+        StdOut.println(g.toString());
     }
 }

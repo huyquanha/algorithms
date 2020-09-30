@@ -1,0 +1,2 @@
+No because a stack will push elements to the top instead of to the bottom => it will basically become DFS where you go
+as deep as you can along a path, and the path that you discover to a certain vertex v is no longer guaranteed to be the smallest
