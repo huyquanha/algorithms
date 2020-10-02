@@ -48,6 +48,10 @@ public class RedBlackBSSet<Key extends Comparable<Key>> {
         return false;
     }
 
+    public Iterable<Key> keys() {
+        return rangeSearch(min(), max());
+    }
+
     public Iterable<Key> rangeSearch(Key lo, Key hi) {
         if (lo == null || hi == null) throw new IllegalArgumentException();
         if (lo.compareTo(hi) > 0) throw new IllegalArgumentException();

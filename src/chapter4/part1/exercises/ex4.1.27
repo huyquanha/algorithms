@@ -1,0 +1,8 @@
+8 bytes for v and e integer attributes
+24 header bytes for the adjacency list (array)
+8V bytes for references to the Bags (there are V vertices => V bags)
+Each edge is repeated twice => total number of nodes in bags is 2E
+- Each node contains an Integer and a reference to the next node => each node is 24 (Integer) + 8 (reference) = 32 bytes
+- we have 2E nodes => 64E bytes for the content of the bags
+
+=> total memory is 8 + 24 + 8V + 64E = 32 + 8V + 64E

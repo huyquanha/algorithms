@@ -33,14 +33,36 @@ public class Cycle {
      * @param g
      * @param v
      * @param u
+     * Ex4.1.29: detect cycle even with the presence of self-loops and parallel edges
      */
     private void dfs(Graph g, int v, int u) {
         marked[v] = true;
+        // whether or not we have encountered edge u-v before
+        boolean uvFound = false;
         for (int w : g.adj(v)) {
-            if (!marked[w]) {
+            if (w == v) {
+                // self-loop
+                hasCycle = true;
+                Stack<Integer> cycle = new Stack<>();
+                cycle.push(v);
+                cycle.push(v);
+                cycles.enqueue(cycle);
+            } else if (w == u) {
+                if (!uvFound) {
+                    uvFound = true;
+                } else {
+                    // encounter edge u-v the second time => parallel edges
+                    hasCycle = true;
+                    Stack<Integer> cycle = new Stack<>();
+                    cycle.push(u);
+                    cycle.push(v);
+                    cycle.push(u);
+                    cycles.enqueue(cycle);
+                }
+            } else if (!marked[w]) {
                 edgeTo[w] = v;
                 dfs(g, w, v);
-            } else if (w != u && !visited[w]) {
+            } else if (!visited[w]) {
                 hasCycle = true;
                 Stack<Integer> cycle = new Stack<>();
                 cycle.push(w);

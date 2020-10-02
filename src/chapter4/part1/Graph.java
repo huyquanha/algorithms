@@ -63,10 +63,15 @@ public class Graph {
      * @param w
      */
     public void addEdge(int v, int w) {
-        if (v == w) throw new IllegalArgumentException("No self-loop");
-        if (hasEdge(v, w)) throw new IllegalArgumentException("No parallel edges");
-        adj[v].add(w);
-        adj[w].add(v);
+//        if (v == w) throw new IllegalArgumentException("No self-loop");
+//        if (hasEdge(v, w)) throw new IllegalArgumentException("No parallel edges");
+        if (v == w) {
+            // only add the self-loop once
+            adj[v].add(w);
+        } else {
+            adj[v].add(w);
+            adj[w].add(v);
+        }
         e++;
     }
 
