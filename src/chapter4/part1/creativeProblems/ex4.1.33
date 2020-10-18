@@ -1,0 +1,27 @@
+We have 2 directions to prove:
+- If a graph contains no odd-length cycle then it is bipartite (two-colorable) (1)
+- If a graph is bipartite then it contains no odd-length cycle (2)
+
+We can prove (2) by using negation:
+- Suppose there is an odd-length cycle in a bipartite graph
+    - Starting from a random vertex in the cycle, we color it red for example
+    - We traverse the cycle, each time color the next vertex opposite to the previous vertex's color
+    - We expect that when we finish the cycle and come back to the source vertex, the color would match. This is only
+    possible if the number of edges in the cycle is even, because after every 2 edges the color is switched back to original,
+    so with an odd-length cycle we could never come back to where we have started.
+
+We can prove (1) by proving the 2 sub-tasks
+- A graph with no cycle is a bipartite graph
+    - This is trivial to prove, because for a graph with no cycle we can freely switch color after each traversal
+- A graph with all even-length cycles is also a bipartite graph
+    - Without loss of generality, assume the graph G is connected (if G is not connected, then G is comprised of
+    connected components, and we could treat each connected component as a "small" G)
+    - We partition the vertices in G into 2 groups
+        - V1 where shortest path from v to v0 is of even length
+        - V2 where shortest path from v to v0 is of odd length
+    - We prove that if the graph contains no odd-length cycle then there's no edge between 2 vertices that belong
+    to the same group (either V1 or V2) and hence the graph is bipartite
+    - By contradiction, suppose that there's an edge between 2 vertices x,y where x,y both belong to V1 or x,y both
+    belong to V2. Then (vo,...,x,y,....vo) is a cycle with odd length (because vo->x and vo->y is either both even or both odd
+    => sum of them is even, and then add the edge between x and y => total is odd)
+    => if the graph contains no odd-length cycles, then theres no ege between 2 vertices of the same group => graph is bipartite

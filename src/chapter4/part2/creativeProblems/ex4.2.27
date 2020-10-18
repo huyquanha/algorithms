@@ -1,0 +1,12 @@
+For every pair of vertices v,w there could be
+- An edge from v->w
+- An edge from w->v
+- Both
+- Neither
+
+The number of different pair of vertices is V(V-1)/2
+=> the number of enumeration if there's no self-loop is 4 ^ (V(V-1)/2) = 2 ^ (V(V-1) = 2 ^ (V^2 - V)
+
+If we also count self-loops, there are 2^V different set of self-loops that can be added to any loopless directed graph above
+
+=> the total number of enumerations is 2 ^ (V^2 -V) * 2 ^ V = 2 ^ (V^2)

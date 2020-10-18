@@ -1,0 +1,13 @@
+- Between V vertices, there are V(V-1)/2 distinct pairs of vertices. Each pair of vertices can be considered
+a possible position for one of the edges.
+=> the problem is reduced to: how many ways to pick E edges out of a set of V(V-1)/2 edges to form a graph?
+The order that you pick the edges does not matter, since the graph they form will be the same => we have a combination
+problem with the following formula:
+
+C = n!/(r! * (n-r)!) with n being the total number of items and r being the number of items to be picked out.
+
+=> in our case,
+
+    C = (V(V-1)/2)! / (E! * (V(V-1)/2 - E)!)
+
+Note also that if E is larger than V(V-1)/2, there's no way we could create a graph without introducing parallel edges

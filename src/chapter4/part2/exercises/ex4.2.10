@@ -1,0 +1,11 @@
+  0
+/ | \
+1 2  3  (all arrows point down)
+|
+4
+
+Topological Order: 0 1 2 3 4
+
+DFS cannot produce this topological order, because it will go all the way down the tree first until it reach the bottom,
+so 4 will always be immediately after 1, no matter the order the vertices are visited from 0. It's not possible for 4
+to be separated from 1 by 2 and 3.

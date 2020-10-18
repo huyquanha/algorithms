@@ -1,0 +1,6 @@
+Given a pair of vertices s and t, since the graph has no articulation points, if we remove any vertex
+on the path that connects s and t, the graph is still connected, that is, there's still a way to get from s to t.
+
+Now, after we remove that vertex and its adjacent edges, the path that we used previously to connect s and t
+will no longer work, but since the graph is still connected => there must be another path that is disjoint from
+the previous path that connects s and t => the graph is biconnected

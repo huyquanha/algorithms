@@ -5,7 +5,9 @@ import edu.princeton.cs.algs4.In;
 
 public class SymbolGraph {
     private Graph g;
+    // map from vertex name to vertex index
     private LinearProbingHashST<String, Integer> st;
+    // map from vertex index back to vertex name
     private String[] keys;
 
     public SymbolGraph(String filename, String delim) {
@@ -23,6 +25,8 @@ public class SymbolGraph {
         for (String k : st.keys()) {
             keys[st.get(k)] = k;
         }
+        // we have to make another pass through the file because we need to know the total number of vertices
+        // beforehand, and the only way to do that is to traverse through the whole file the 1st time
         g = new Graph(st.size());
         in = new In(filename);
         while (in.hasNextLine()) {

@@ -1,0 +1,4 @@
+See exercise 4.1.27
+The memory usage of Digraph is pretty much the same with Graph, except that each edge is only stored once => halve
+the memory usage of the edges from 64E to 32E bytes
+=> total memory is: 8 + 24 + 8V + 32E = 32 + 8V + 32E

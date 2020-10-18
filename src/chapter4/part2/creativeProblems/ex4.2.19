@@ -1,0 +1,16 @@
+We prove by a counter-example:
+
+A -> B
+A -> C
+B -> C
+
+Let's say we start the traversal from A
+- if we use DFS
+    - if we visit B first, DFS will visit C next and push to stack, then B and finally A => order is A B C => topological
+    - if we visit C first, C done and pushed to stack. We then visit B and check C but C marked => B done => pushed to stack and then A
+    => also topological order A B C
+
+- if we use BFS
+    - we will visit both B and C and mark them as having a distance of 1 from A. Our toplogical order could be correct (A B C)
+    but could also be incorrect (A C B) (incorect because there's an edge from B to C => B has to be done before C). => BFS is
+    not reliable

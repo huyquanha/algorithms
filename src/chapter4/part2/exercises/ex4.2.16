@@ -1,0 +1,9 @@
+Let's say in the original DAG, there's an edge going from v to w. Since the graph is acyclic, there will be no path
+from w back to v
+Kosaraju first reverse the graph => v->w becomes w->v.
+It then computes the reverse postorder of the reverse graph => since in the reverse graph the edge goes from w to v,
+w will appear before v in the constructor.
+- w hence marked before v, so when we reach v in the constructor, w won't be added to v's component anymore even though
+there's an edge from v -> w because w was already marked
+
+This apply to all edges in G, and as a result each vertex belongs to its own strong component => V strong components.

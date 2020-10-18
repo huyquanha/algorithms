@@ -1,0 +1,13 @@
+False.
+Consider this example
+G: 0 -> 1 -> 2
+    \
+     -> 3
+
+=> post-order is: 2 1 3 0
+
+Gr (reverse of G):
+    0 <- 1 <- 2
+     \
+      <- 3
+=> reverse post-order is: 0 1 2 3

@@ -1,0 +1,10 @@
+    0
+   / \
+ 1     2     (all edges point down)
+/ \    /\
+3  4  5  6
+|  |
+7  8
+
+Imagine there's an edge 0->7 and 0->8. Then LCA(7,8) is 1, but the shortest ancestral path is not 1 to 7 and 1 to 8 (whose
+length is 4), but 0 to 7 and 0 to 8 (whose length is 2)

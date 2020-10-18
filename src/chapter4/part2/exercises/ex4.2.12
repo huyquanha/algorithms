@@ -1,0 +1,9 @@
+The digraph is just a path with V vertices and V - 1 edges in between
+- Vertex 0 will introduce V edges (since each vertex is reachable from itself, another edge from v to itself is added to the transitive
+closure which is a self loop)
+- Vertex 1 will introduce V -1 edges (excluding the first edge 0->1, and similar to 0, add a new edge from v to itself)
+- Vertex 2 will introduce V - 2 edges...
+- ...
+- Vertex V - 1 will introduce 1 edges
+
+=> total is 1 + 2 + ... + (V - 1) + V = (V + 1) * V / 2

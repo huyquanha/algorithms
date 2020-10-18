@@ -1,0 +1,25 @@
+There are some clarifications that need to be made on the problem statement:
+- Conjunctive normal form is a boolean formula of the form: (A || B) && (C || D) && ... (AND of ORs)
+- For a conjunctive normal form formula to be true, each individual OR clause must be true
+
+- N is not the number of literals, it should be the number of different variables present in the boolean formula
+    - Each literal is either the variable itself, or the negation of that variable.
+
+- With N being the number of "variables" instead of the number of "literals", it now makes sense to draw an implication
+graph with 2N vertices, each representing either the variable or the negation of that variable.
+
+x + y <=> y' -> x <=> x' -> y (<=> here means "equivalent" and + means "logical OR operator")
+
+- This means x + y is equivalent to:
+    - If y is false, x HAS to be true. From a graph perspective, when y is false, we visit vertex y', which reduces the truthiness
+    of (x + y) to the truthiness of x. If x is true, the whole clause (x + y) is true. If x is false, the whole clause (x + y) is false
+    - If x is false, y HAS to be true. From a graph perspective, when x is false, we visit vertex x' to reduce the truthiness of (x+y)
+    to the truthiness of y. If y is true, the whole clause is true and vice-versa.
+
+Let's take an example with only 2 clauses and 3 variables for simplicity
+(x0 || !x1) && (x1 || x2) && (!xo || !x2) && (x2 || x3) && (x2 || !x0) && (x0 || x1)
+
+(!xo || !x2) && (x2 || !xo)
+
+If xo true => !xo false => !x2 true => x2 false => !xo true => xo false => contradict
+If !x2 false (x2 true) => !xo true => xo false

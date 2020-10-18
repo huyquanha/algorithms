@@ -1,0 +1,23 @@
+2 things to prove
+- If G is connected and each vertex has equal in-degree and out-degree => G has an Eulerian cycle (1)
+- If G has an Eulerian cycle => it is connected and each vertex has equal in-degree and out-degree (2)
+
+To prove (1)
+- G is connected => there exists a path from v to w and another one from w to v => there exists a cycle in G
+- We want to prove that there exists a cycle in G that
+    - go through every edge
+        - By contradiction, let's assume the cycle doesn't use all the edges. However the cycle is guaranteed to use
+        the same number of indegree and outdegree since it goes in and out of the vertex => the remaining un-traversed
+        in-degree and out-degree of a vertex will be the same => we can keep going out and in of that vertex until we consume
+        all the degree => it's possible for us to have a cycle that use all the edges.
+    - each edge is only used once
+        - this is also possible by the previous prove.
+
+To prove (2)
+- Supposed by contradiction G is not connected => there exists a pair of vertices v and w such that there is a path
+from v to w but no path from w back to v. This contradicts with the fact that G has a Eulerian cycle which visits each edge
+exactly once, because we couldn't get from v to w then back to v => G must be connected
+- Since each edge is only traversed once, it's essential that each vertex has the same number of in-degree (edges pointing to
+the vertex) and number of out-degree (edges pointing from the vertex). Since we have a cycle, the path doesn't end at any vertex
+=> it has to go in and then out of any vertex. To be able to traverse each edge exactly once, the number of ways to go in and
+the number of ways to go out of a vertex must be the same.

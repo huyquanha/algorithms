@@ -1,0 +1,12 @@
+We will prove this by contradiction
+Without loss of generality, let's make some assumptions:
+- G has, among others, 2 connected components. v belongs to 1 component and w belongs to another, and there's an edge
+from v to w.
+- If no such edge exist (that is, no reachability whatsoever between connected components), the problem becomes
+trivial
+- If there's such an edge, we want to prove that reversing G does not add w to v's connected component
+
+By contradiction, let's say reversing G does so. Since G is reverse, v->w becomes w->v, and since w belongs
+to the same component with v, there must be another path from v->w.
+This however, implies that there must be a reverse path from w->v in the original graph G, and we know
+v->w is also in G => w should belong to the same connected component as v in G but it is not => contradiction
