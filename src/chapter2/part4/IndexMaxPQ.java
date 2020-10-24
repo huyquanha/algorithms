@@ -9,14 +9,19 @@ public class IndexMaxPQ<Item extends Comparable<Item>> {
     private int N = 0;
     private int[] pq;
     private int[] qp;
-    private Item[] keys;
+    private Item[] items;
 
+    /**
+     * We should choose maxN so that any index k to be inserted is < maxN
+     * Ideally, maxN should be the length of the client array to be inserted into the index priority queue
+     * @param maxN
+     */
     public IndexMaxPQ(int maxN) {
-        //indices run from 0 to maxN - 1 => keys' size is maxN
-        keys = (Item[]) new Comparable[maxN];
-        //pq will hold the indices. since we don't use the first slot, pq should have a size of maxN + 1
+        // indices run from 0 to maxN - 1 => keys' size is maxN
+        items = (Item[]) new Comparable[maxN];
+        // pq will hold the indices. since we don't use the first slot, pq should have a size of maxN + 1
         pq = new int[maxN + 1];
-        //qp[i] is the position of i in pq (i is one of the indices), and since i runs from 0 to maxN - 1, qp's size can be maxN
+        // qp[i] is the position of i in pq (i is one of the indices), and since i runs from 0 to maxN - 1, qp's size can be maxN
         qp = new int[maxN];
         //initially, all the indices are not there, so we initialize qp[0..maxN-1] to -1
         for (int i = 0; i < maxN; i++) {
@@ -25,10 +30,9 @@ public class IndexMaxPQ<Item extends Comparable<Item>> {
     }
 
     public void insert(int k, Item item) {
-        N++;
-        pq[N] = k;
+        pq[++N] = k;
         qp[k] = N;
-        keys[k] = item;
+        items[k] = item;
         swim(N);
     }
 
@@ -36,7 +40,7 @@ public class IndexMaxPQ<Item extends Comparable<Item>> {
         if (!contains(k)) {
             throw new NoSuchElementException();
         }
-        keys[k] = item;
+        items[k] = item;
         swim(qp[k]);
         sink(qp[k]);
     }
@@ -45,10 +49,11 @@ public class IndexMaxPQ<Item extends Comparable<Item>> {
         if (!contains(k)) {
             throw new NoSuchElementException();
         }
-        exch(qp[k], N--);
-        swim(qp[k]);
-        sink(qp[k]);
-        keys[k] = null;
+        int i = qp[k];
+        exch(i, N--);
+        swim(i);
+        sink(i);
+        items[k] = null;
         qp[k] = -1;
     }
 
@@ -56,7 +61,7 @@ public class IndexMaxPQ<Item extends Comparable<Item>> {
         if (isEmpty()) {
             throw new NoSuchElementException();
         }
-        return keys[pq[1]];
+        return items[pq[1]];
     }
 
     public int maxIndex() {
@@ -72,9 +77,9 @@ public class IndexMaxPQ<Item extends Comparable<Item>> {
         }
         int maxIndex = pq[1];
         exch(1, N--);
-        keys[maxIndex] = null;
-        qp[maxIndex] = -1;
         sink(1);
+        items[maxIndex] = null;
+        qp[maxIndex] = -1;
         return maxIndex;
     }
 
@@ -91,9 +96,9 @@ public class IndexMaxPQ<Item extends Comparable<Item>> {
     }
 
     private void swim(int k) {
-        while (k > 1 && less(k/2, k)) {
-            exch(k, k/2);
-            k = k/2;
+        while (k > 1 && less(k / 2, k)) {
+            exch(k, k / 2);
+            k = k / 2;
         }
     }
 
@@ -108,7 +113,7 @@ public class IndexMaxPQ<Item extends Comparable<Item>> {
     }
 
     private boolean less(int i, int j) {
-        return keys[pq[i]].compareTo(keys[pq[j]]) < 0;
+        return items[pq[i]].compareTo(items[pq[j]]) < 0;
     }
 
     private void exch(int i, int j) {

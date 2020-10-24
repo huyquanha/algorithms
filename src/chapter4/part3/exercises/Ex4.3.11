@@ -1,0 +1,7 @@
+8 bytes for int v and e
+24 bytes overhead for the adjacency list
+8 bytes reference to each Bag object and there are V references, one for each vertex
+Each Edge object needs a reference from the Bags => 8 bytes * E edges
+Each Edge object itself uses 8 bytes for 2 endpoints v and w, another 8 bytes for the weight (double) => 16 bytes + 8 bytes ref = 24 bytes total
+
+=> EdgeWeightedGraph uses 32 + 8V + 24E bytes in total

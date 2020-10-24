@@ -1,0 +1,5 @@
+By contradiction, let's assume this is wrong. That is, for one vertex v, there exists another vertex w closer to it outside
+of its subtree than all other vertices in its subtree.
+Let's say v is connected to its subtree using edge e. By the assumption, weight(e) < weight(v-w). If that's the case
+according to Kruskal's algorithm which processes the edges from shortest to longest, v-w should have been processed before
+e => v will be in w's subtree => contradiction => the initial assumption in the problem is true

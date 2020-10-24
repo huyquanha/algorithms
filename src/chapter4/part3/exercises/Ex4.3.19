@@ -1,0 +1,7 @@
+Prim's algorithm uses an index priority queue to store the shortest edge weight discovered so far to each vertex,
+sorted by vertex
+- Each vertex will be inserted and then deleted from the priority queue, and in the worst case there will be
+E changes to edge to each vertex
+- Since the size of the priority queue is V => VlogV + ElogV ~ ElogV
+
+Kruskal's algorithm uses ElogE in the worst case because it inserts all the edges and the remove them

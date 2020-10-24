@@ -1,0 +1,21 @@
+We assume that the graph mentioned is connected, otherwise there's no MST.
+
+- Let's say we begin building the MST starting from one endpoint of the shortest edge (it wouldn't matter where we start,
+since all edge weights are different => MST is unique). By the cut property, we are going to color black the minimum-weight
+edge that connects the tree vertices with non-tree vertices. Right now tree vertices is our endpoint only, and since
+our shortest edge is the shortest in the graph, it will be the minimum crossing edge and has to be included in the graph => done
+
+- The longest edge can belong to the MST if it happens to be the only edge that we can use to connect a vertex to the MST
+
+
+     a
+    / \
+   b --c
+    \ /
+     d
+
+- In the graph above, let's say a-b is 1, a-c is 2, b-c is 3, b-d is 4 and c-d is 5
+    - Starting from a, we add b (min edge) to the MST, then c
+    - Since b and c are both added to the MST, b-c becomes ineligible
+    - Then b-d is added to the MST
+- As we can see, b-c is the min-weight edge in the b-c-d-b cycle, however it's not included in the MST

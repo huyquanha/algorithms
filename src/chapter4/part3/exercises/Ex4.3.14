@@ -1,0 +1,14 @@
+- If the deleted edge is not in MST, MST stays the same
+- If the deleted edge is in MST, the removed edge separates the MST into 2 connected components. We need to re-connect
+a vertex from component 1 to a vertex from component 2 to re-create the MST
+- From the set of remaining edges in the old MST, we build a graph with only those edges, and then from v and w (2 ends
+of the removed edge), we do either DFS or BFS to mark all vertices that belong to each connected component
+- Coming back to the original graph where we first establish the MST, if we were to use Kruskal algorithm
+to first sort the edges in the graph, we can easily have a sorted list of edges that are not part of the MST
+- For each of those edges, we check whether it connects 2 vertices that belong to 2 different connected components we have found
+above, and if it is update the minimum-weight edge if the weight of the new edge is smaller
+- At the end, we would find the minimum-weight edge that connects a vertex from component1 to component2, and add that edge
+back to the MST => O(E)
+
+Note that the original MST needs to be established by Kruskal's algorithm, so that we can get sorted edges as a by-product to
+guarantee O(E) performance, otherwise we would have to sort the edges again which takes O(ElogE)

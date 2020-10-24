@@ -5,9 +5,9 @@ import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdOut;
 
 public class Graph {
-    private int v;
+    private final int v;
     private int e;
-    private Bag<Integer>[] adj;
+    private final Bag<Integer>[] adj;
 
     public Graph(int v) {
         this.v = v;

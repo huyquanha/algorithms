@@ -1,0 +1,5 @@
+It's easy to see why without even finding a counter-example: the min-weight edge that is incident to the most recently
+added vertex might be larger than one of the already-discovered edges from another vertex in the MST to the destination vertex
+
+That's why it's important to maintain a priority queue of all edges ordered by weight, or to maintain the min-weight edge
+from the tree to a non-tree vertex, not just considering the new edges of the most recently added vertex

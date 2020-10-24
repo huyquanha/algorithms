@@ -1,0 +1,19 @@
+- Since the MST connects all vertices in the graph, any new edge introduced, if it were to be added to the MST, would
+cause a cycle in the MST
+- That's what we are going to do though: we add the new edge e to MST => cycle => we need to remove the edge with the maximum
+weights in the cycle.
+- From the Iterable<Edge> mst, we re-construct the Edge[] edgeTo array
+
+Edge[] edgeTo = new Edge[g.V()];
+for (Edge e : mst) {
+    int v = e.either();
+    int w = e.other(v);
+    if (edgeTo[v] == null) edgeTo[v] = e;
+    else edgeTo[w] = e;
+}
+
+Then, let's say the new edge e is between 2 vertices v and w, we could follow the edgeTo[] array, starting from v,
+working our way backward and update a reference to the maximum-weight edge until we get back to v again. Now we have the
+edge with maximum weight and we just need to remove it from the MST
+
+Since the cycle can at most contain all V vertices, this algorithm is O(V).
